@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/addProduct" method="post" enctype="multipart/form-data">
+        <label for="productName">Product name</label><br>
+        <input type="text" name="productName">
+        <br>
+        <label for="productPrice">Product Price</label><br>
+        <input type="number" name="productPrice">
+        <br>
+        <label for="productDescription">Product Description</label><br>
+        <!-- <input type="text" name=productDescription"> -->
+        <textarea name="productDescription" id="product-description" ></textarea>
+        <br>
+        <label for="productQuantity">Product Quantity</label><br>
+        <input type="number" name="productQuantity">
+        <br>
+        <label for="productDiscount">Product Discount</label><br>
+        <input type="number" name="productDiscount">
+        <br>
+        <label for="productSize">Product size</label><br>
+        <input type="text" name="productSize">
+        <br>
+        <label for="image">Image</label><br>
+        <input type="file" multiple accept="image/*" id="image" name="productImage">
+        <br><br>
+        <button>Add Product</button>
+      </form>
+</body>
+</html>

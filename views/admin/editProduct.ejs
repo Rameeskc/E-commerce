@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/admin/editProduct.css">
+</head>
+<body>
+    <h1>Edit Product</h1>
+    <div class="container">
+    <form action="/editProduct/<%=productData._id%>" method="post" enctype="multipart/form-data" class="form">
+        <label for="productName">Product name</label>
+        <input type="text" name="productName" value="<%=productData.productName%>">
+        
+        <label for="productPrice">Product Price</label>
+        <input type="number" name="productPrice" value="<%=productData.productPrice%>">
+        
+        <label for="productDescription">Product Description</label>
+        <!-- <input type="text" name=productDescription"> -->
+        <textarea name="productDescription" id="product-description" ><%=productData.productDescription%></textarea>
+    
+        <label for="productQuantity">Product Quantity</label>
+        <input type="number" name="productQuantity" value="<%=productData.productQuantity%>">
+        
+        <label for="productDiscount">Product Discount</label>
+        <input type="number" name="productDiscount" value="<%=productData.productDiscount%>">
+        
+        <label for="productSize">Product size</label>
+        <input type="text" name="productSize" value="<%=productData.productSize%>">
+        
+        <label for="image">Image</label>
+        <input type="file" multiple accept="image/*" id="image" name="productImage" class="input-button" >
+        
+        <button>Submit</button>
+      </form>
+    </div>
+</body>
+</html>

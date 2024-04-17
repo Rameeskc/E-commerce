@@ -1,47 +1,16 @@
 const {User,Admin}=require("../model/signup")
 
+// USER
+
 
 module.exports ={
-    loginGet:(req,res)=>{
-        if(req.session.email){
-            res.redirect('/user')
-        }else{
-            res.render('entry/login')
-        }
-    },
 
-
-    loginPost:async(req,res)=>{
-        const email= req.body.email;
-        const user = await User.findOne({email:email})
-
-        req.session.email =user.email
-        console.log('user')
-        res.redirect('/userHome')
-    },
-
-
-
-    logoutGet:(req,res)=>{
-        res.redirect()
-    },
-
-
-    signupGet:(req,res)=>{
-        res.render('entry/signup')
-    },
-
-
-    signupPost:async (req,res)=>{
-         
-         res.redirect('/login')
-    },
-
-
+    // ADMIN
 
 
     adminlogGet:(req,res)=>{
-        res.render('admin/adminLogin')
+        res.render('entry/adminLogin')
+        
     },
 
     adminlogPost:(req,res)=>{
@@ -49,15 +18,73 @@ module.exports ={
     },
 
     adminsignGet:(req,res)=>{
-        res.render('admin/adminSignup')
+        res.render('entry/adminSignup')
     },
     
     adminsignPost:(req,res)=>{
-        console.log(req.body)
+        // console.log(req.body)
         res.redirect('/adminLogin')
     },
+
+
     adminHome:(req,res)=>{
         res.render('admin/adminHome')
-    }
+    },
+
+
+    // user
+
+
+
+    userloginGet:(req,res)=>{
+        res.render('entry/userLogin')
+        
+    },
+
+
+    userloginPost:async(req,res)=>{
+        const email= req.body.email;
+        const user = await User.findOne({email:email})
+
+        req.session.email =user.email
+        console.log('user')
+        if(req.session.email){
+            res.redirect('/')
+
+        }else{
+            res.redirect('/userLogin')
+        }
+    },
+
+
+
+    usersignupGet:(req,res)=>{
+
+        res.render('entry/userSignup')
+        },
+
+
+    usersignupPost:async (req,res)=>{
+        const email = req.body.email;
+        const user = await User.findOne({email:email})
+        req.session.email = user.email;
+
+        if(req.session.email){
+            res.redirect('/')
+        }else{
+            res.redirect('/userLogin')
+        }
+        
+         
+    },
+
+
     
+    userlogoutGet:(req,res)=>{
+        res.redirect()
+    },
+
+    otpGet:(req,res)=>{
+
+    }
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/admin/editCategories.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+        <h2>Edit category</h2>
+        </div>
+        <div class="form-data">
+        <form action="/editCategories/<%=categoryData._id%>" method="post" enctype="multipart/form-data">
+            <label for="categoryName">Category Name</label>
+            <input type="text" name="categoryName" value="<%=categoryData.categoryName%>">
+
+            <label for="subcategoryName">Subategory Name</label>
+            <input type="text" name="subcategoryName" value="<%=categoryData.subcategoryName%>">
+
+            <label for="image">Image</label>
+            <input type="file" multiple accept="image/*" id="image" name="categoryImage">
+
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

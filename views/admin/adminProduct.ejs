@@ -10,9 +10,11 @@
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/admin/adminproduct.css">
+    
   </head>
   <body>
     <div class="grid-container">
@@ -68,7 +70,7 @@
               <span class="material-icons-outlined">fact_check</span> Banner
             </li>
           </a>
-          <a href="/adminCopen" class="side-bar-link">
+          <a href="/adminCoupon" class="side-bar-link">
           <li class="sidebar-list-item">
               <span class="material-icons-outlined">poll</span> Coupon
             </li>
@@ -80,11 +82,51 @@
           </a>
         </ul>
       </aside>
-      <a href="/addProduct">
-      <div class="product-button-space">
-        
-        <div class="product-button"><h2 class="text">Add Product</h2></div>
+      <div class="addProductContent">
+        <a href="/addProduct">
+          <div class="product-button-space">
+            
+            <div class="product-button"><h2 class="text">Add Product</h2></div>
+          </div>
+        </a>
+        <h1>Product List</h1>
+        <div class="table-space">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>price</th>
+              <th>Discount</th>
+              <th>Discounted</th>
+              <th>Quantity</th>
+              <th>size</th>
+              <th>Image</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(product => { %>
+              <tr>
+                <td><%= product.productName %></td>
+                <td><%= product.productDescription %></td>
+                <td><%= product.productPrice %></td>
+                <td><%= product.productDiscount %></td>
+                <td><%= product.productDiscounted %></td>
+                <td><%= product.productQuantity %></td>
+                <td><%= product.productSize %></td>
+                <td><img src ="/image/<%= product.productImage %>" alt=" product.productName %>" style="max-width: 80px;  "</td>
+                <td></td>
+                <td><a href="/editProduct/<%=product._id%>"><button><i class="fa-regular fa-pen-to-square"></i></button></a></td>
+                <td><a href="/deleteProduct/<%=product._id%>"><button><i class="fa-solid fa-trash"></i></button></a></td>
+              </tr>
+            <%});%>
+          </tbody>
+        </table>
       </div>
-    </a>
+      </div>
+    
   </body>
 </html>

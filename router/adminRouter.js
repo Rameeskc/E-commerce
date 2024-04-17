@@ -1,29 +1,53 @@
 const express = require('express')
 const router = express.Router()
 const multer = require('multer')
-const storage = require('../middleware/multer')
+const {storage} = require('../middleware/multer')
 const upload = multer({ storage })
 
 
 
 const auth = require('../controller/authcontroller')
-const adminAuth = require('../controller/admin')
+const productAuth = require('../controller/product')
+const categoryAuth = require('../controller/categories')
+const bannerAuth = require('../controller/banner')
+const couponAuth = require('../controller/coupon')
+const customerAuth = require('../controller/customers')
+
+
 
 const validation = require('../middleware/auth')
 
-router.get('/adminLogin',auth.adminlogGet)
-      .post('/adminLogin',validation.adminlogVerify,auth.adminlogPost)
-      .get('/adminSignup',auth.adminsignGet)
-      .post('/adminSignup',validation.adminsignVerify,auth.adminsignPost)
-      .get('/adminHome',auth.adminHome)
-      .get('/adminProduct',adminAuth.productGet)
-      .get('/addProduct',adminAuth.addproductGet)
-      .post('/addProduct',upload.array('productImage',5),adminAuth.addproductPost)
+router.get('/adminHome',auth.adminHome)
+
+      .get('/adminProduct',productAuth.productGet)
+      .get('/addProduct',productAuth.addproductGet)
+      .post('/addProduct',upload.array('productImage',5),productAuth.addproductPost)
       // .post('/adminProduct',adminAuth.productPost)
-      .get('/adminCategories',adminAuth.categoriesGet)
-      .get('/adminCustomers',adminAuth.customersGet)
-      .get('/adminBanner',adminAuth.bannerGet)
-      .get('/adminCopen',adminAuth.couponGet)
+      .get('/editProduct/:id',productAuth.editproductGet)
+      .post('/editProduct/:id',upload.array('productImage',5),productAuth.editproductPost)
+      .get('/deleteProduct/:id',productAuth.deleteproductGet)
+      
+      .get('/adminCategories',categoryAuth.categoriesGet)
+      .get('/addCategories',categoryAuth.addcategoriesGet)
+      .post('/addCategories',upload.single('categoryImage'),categoryAuth.addcategoriesPost)
+      .get('/editCategories/:id',categoryAuth.editcategoriesGet)
+      .post('/editCategories/:id',upload.single('categoryImage'),categoryAuth.editcategoriesPost)
+      .get('/deleteCategories/:id',categoryAuth.deletecategoriesPost)
+
+      
+      .get('/adminCustomers',customerAuth.customersGet)
+
+
+
+      .get('/adminBanner',bannerAuth.bannerGet)
+      .get('/addBanner',bannerAuth.addbannerGet)
+      .post('/addBanner',upload.single('bannerImage'),bannerAuth.addbannerPost)
+      .get('/editBanner/:id',bannerAuth.editbannerGet)
+      .post('/editBanner/:id',upload.single('bannerImage'),bannerAuth.editbannerPost)
+      .get('/deleteBanner/:id',bannerAuth.deletebannerGet)
+
+
+      .get('/adminCoupon',couponAuth.couponGet)
 
 
 

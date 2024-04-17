@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Account</title>
+    <!-- <link rel="shortcut icon" href="#" type="image/x-icon" /> -->
+    <!-- Bootstrap css cdn link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- end of Bootstrap css cdn link -->
+    <!-- Style css -->
+    <link rel="stylesheet" href="/user/wishlist.css" />
+    <!-- end of Style css -->
+  </head>
+  <body>
+
+    <%- include('header.ejs') %>
+
+    <!-- header -->
+    <div class="newItems">
+        <div class="productImg">
+          <img src="./images/newlyLaunched/2.png" alt="" />
+        </div>
+        <div class="text-area">
+          <div class="productTittle">
+            <p>COMMANDO Q9</p>
+          </div>
+          <div
+            class="discountPrice d-flex align-items-baseline"
+          >
+            <p>₹1999</p>
+            <p>₹3999</p>
+          </div>
+          <div class="property">
+            <div>
+              <img
+                src="./images/newlyLaunched/hexagon-list-icon.svg"
+                alt=""
+              />
+              <p>Pro Gaming Earbuds</p>
+            </div>
+          </div>
+          <div class="colorOptions">
+            
+          </div>
+          <div class="shopOption">
+            <div class="d-flex align-items-center">
+              <button>Add To Cart</button>
+              <svg
+                width="18"
+                height="12"
+                viewBox="0 0 18 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_28_66)">
+                  <path
+                    d="M1 1L6 6L1 11"
+                    stroke="#4B4955"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    opacity="0.65"
+                    d="M6 1L11 6L6 11"
+                    stroke="#4B4955"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    opacity="0.4"
+                    d="M11 1L16 6L11 11"
+                    stroke="#4B4955"
+                    stroke-width="1.5"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_28_66">
+                    <rect
+                      width="18"
+                      height="12"
+                      fill="white"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--end of Bootstrap script file -->
+  </body>
+</html>

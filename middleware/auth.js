@@ -2,45 +2,47 @@ const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 const { User, Admin } = require('../model/signup')
 const bcrypt = require('bcrypt');  
 
+// login
+
 const logVerify = async (req,res,next)=>{
+    try{
     const email = req.body.email ;
     const enteredPassword = req.body.password ;
     if(!email || !enteredPassword){
-        res.redirect('/login')
+        res.redirect('/userLogin')
     }
-    try{
         const user = await User.findOne({email:email})
         if(!user){
-            res.redirect('/login')
+            res.redirect('/userLogin')
         }
-        const passwordMatch = await bcrypt.compare(enteredPassword,User.password)
+        const passwordMatch = await bcrypt.compare(enteredPassword,user.password)
         if(!passwordMatch){
-            res.redirect('/login')
+            res.redirect('/userLogin')
         }
+        next()
     } catch(error) {
         console.error("Error During In Login",error);
         res.status(500).send("Internal Server Error");
     }
-    next()
 }
 
 
-
+// signup
 
 const signVerify = async (req, res, next) => {
     const { name, email, mobileNumber, password, confirmPassword } = req.body;
     if (!name || !email || !mobileNumber || !password || !confirmPassword) {
         // err = `All fields are required`
-        res.redirect('/signup')
+        res.redirect('/userLogin')
     }else if (password !== confirmPassword) {
-        res.redirect('/signup')
+        res.redirect('/userLogin')
     }else if (!passwordRegex.test(password)) {
-        res.redirect('/signup')
+        res.redirect('/userLogin')
     }
     try {
         const existingUser = await User.findOne({ email: email })
         if (existingUser) {
-            res.redirect('/signup')
+            res.redirect('/userLogin')
         }
         const hashedPassword = await bcrypt.hash(password, 10)
         const data = {
@@ -50,12 +52,12 @@ const signVerify = async (req, res, next) => {
             password: hashedPassword
         }
         await User.create(data)             
+        next()
         
     } catch (error) {
         console.error("error during user registration:", error)
         res.status(500).send("Internel Server is Error")
     }
-    next()
 }
 
 
@@ -84,17 +86,22 @@ const adminlogVerify = async(req,res,next)=>{
 
 
 const adminsignVerify=async(req,res,next) => {
+    console.log('hello');
     const {name, email, mobileNumber, password, confirmPassword} = req.body;
+    console.log(req.body)
+    
     if(!name || !email || !mobileNumber || !password || !confirmPassword){
         return res.redirect('/adminSignup')
     }else if(password !== confirmPassword){
         return res.redirect('/adminSignup')
-    }else if(!passwordRegex.test(password)){
-        return res.redirect('/adminSignup')
     }
+    // }else if(!passwordRegex.test(password)){
+    //     return res.redirect('/adminSignup')
+    // }
     try{
         const existingUser = await Admin.findOne({email:email})
 
+    console.log(existingUser);
         if(existingUser){
             return res.redirect('/adminSignup')
         }
@@ -105,6 +112,7 @@ const adminsignVerify=async(req,res,next) => {
             mobileNumber: mobileNumber,
             password: hashedPassword
         }
+        console.log('data:',data);
         await Admin.create(data)
 
     }catch(error){
@@ -116,4 +124,4 @@ const adminsignVerify=async(req,res,next) => {
 }
 
 
-module.exports = {signVerify,logVerify,adminsignVerify,adminlogVerify};
+module.exports = {signVerify,logVerify,adminlogVerify,adminsignVerify};

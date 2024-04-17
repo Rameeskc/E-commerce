@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/admin/addproduct.css">
 </head>
+
 <body>
-    <form action="/addProduct" method="post" enctype="multipart/form-data">
-        <label for="productName">Product name</label><br>
-        <input type="text" name="productName">
-        <br>
-        <label for="productPrice">Product Price</label><br>
-        <input type="number" name="productPrice">
-        <br>
-        <label for="productDescription">Product Description</label><br>
-        <!-- <input type="text" name=productDescription"> -->
-        <textarea name="productDescription" id="product-description" ></textarea>
-        <br>
-        <label for="productQuantity">Product Quantity</label><br>
-        <input type="number" name="productQuantity">
-        <br>
-        <label for="productDiscount">Product Discount</label><br>
-        <input type="number" name="productDiscount">
-        <br>
-        <label for="productSize">Product size</label><br>
-        <input type="text" name="productSize">
-        <br>
-        <label for="image">Image</label><br>
-        <input type="file" multiple accept="image/*" id="image" name="productImage">
-        <br><br>
-        <button>Add Product</button>
-      </form>
+    <h1>Add Product </h1>
+    <div class="container">
+        <form action="/addProduct" method="post" enctype="multipart/form-data" class="form">
+            <label for="productName">Product name</label>
+            <input type="text" name="productName">
+            
+            <label for="productPrice">Product Price</label>
+            <input type="number" name="productPrice">
+            
+            <label for="productDescription">Product Description</label>
+            <!-- <input type="text" name=productDescription"> -->
+            <textarea name="productDescription" id="product-description"></textarea>
+            
+            <label for="productQuantity">Product Quantity</label>
+            <input type="number" name="productQuantity">
+            
+            <label for="productDiscount">Product Discount</label>
+            <input type="number" name="productDiscount">
+            
+            <label for="productSize">Product size</label>
+            <input type="text" name="productSize">
+        
+            <label for="image">Image</label>
+            <input type="file"  accept="image/*" id="image" name="productImage" class="input-button">
+            
+            <button>Add Product</button>
+        </form>
+    </div>
 </body>
+
 </html>

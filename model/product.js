@@ -10,15 +10,19 @@ const ProductSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    productDiscount:{
+        type:String,
+        required:true
+    },
+    productDiscounted:{
+        type:String,
+        required:true
+    },
     productDescription:{
         type:String,
         required:true
     },
     productQuantity:{
-        type:String,
-        required:true
-    },
-    productDiscount:{
         type:String,
         required:true
     },

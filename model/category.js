@@ -1,13 +1,17 @@
-const mongoose = require('moongose')
+const mongoose = require('mongoose')
 
 const categorySchema = new mongoose.Schema({
-    image:{
+
+    categoryName:{
         type:String
     },
-    category:{
+    subcategoryName:[{
         type:String
-    },
-    subCategory:{
+    }],
+
+
+    categoryImage:{
         type:Array
     }
 })
+module.exports=mongoose.model('categories',categorySchema)

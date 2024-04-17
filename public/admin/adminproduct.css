@@ -14,7 +14,7 @@ body {
   
   .grid-container {
     display: grid;
-    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-columns: 260px 1fr;
     grid-template-rows: 0.2fr 3fr;
     grid-template-areas:
       'sidebar header header header'
@@ -109,14 +109,15 @@ body {
     width: 100%;
     display: flex;
     align-items: end;
+    justify-content: end;
 
   }
 
 
   .product-button{
-    position: absolute;
+    /* position: absolute;
     top: 100px;
-    left: 1200px;
+    left: 1200px; */
     height: 50px;
     width: 150px;
     color: black;
@@ -135,7 +136,42 @@ body {
   
   /* ---------- MAIN ---------- */
   
+.addProductContent{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+}
+.addProductContent a{
+  text-decoration: none;
+}
+.addProductContent h1{
+  text-align: center;
+}
 
+.table-space{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.table{
+  width: auto;
+  /* display: flex;
+  flex-direction: row;  */
+  text-align: center;
+  border: 1px solid rgb(94, 78, 78);
+}
+.box{
+  border: 1px solid rgb(94, 78, 78);
+}
+
+td,th{
+  border: 1px solid rgb(94, 78, 78);
+  
+}
   
   /* ---------- MEDIA QUERIES ---------- */
   

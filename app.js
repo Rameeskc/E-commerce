@@ -2,6 +2,7 @@
 const express=require('express');
 const app = express();
 const session =require('express-session')
+const flash = require('express-flash')
 
 //dotenv library
 require('dotenv').config()
@@ -23,6 +24,8 @@ app.use(session({
   resave:false,
   saveUninitialized:true,
 }));
+
+app.use(flash());
 
 //middlewares and settings
 app.use(express.urlencoded({extended:true}))

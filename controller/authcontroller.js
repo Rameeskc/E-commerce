@@ -1,5 +1,6 @@
 const {User,Admin}=require("../model/signup")
 
+
 // USER
 
 
@@ -21,7 +22,7 @@ module.exports ={
         res.render('entry/adminSignup')
     },
     
-    adminsignPost:(req,res)=>{
+        adminsignPost:(req,res)=>{
         // console.log(req.body)
         res.redirect('/adminLogin')
     },
@@ -37,7 +38,8 @@ module.exports ={
 
 
     userloginGet:(req,res)=>{
-        res.render('entry/userLogin')
+        
+        res.render('entry/userLogin',{messages: req.flash()})
         
     },
 
@@ -46,8 +48,10 @@ module.exports ={
         const email= req.body.email;
         const user = await User.findOne({email:email})
 
-        req.session.email =user.email
-        console.log('user')
+        req.session.email = user.email
+
+        console.log(req.session.email);
+        
         if(req.session.email){
             res.redirect('/')
 
@@ -61,6 +65,7 @@ module.exports ={
     usersignupGet:(req,res)=>{
 
         res.render('entry/userSignup')
+        
         },
 
 

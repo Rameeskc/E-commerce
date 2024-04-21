@@ -6,18 +6,15 @@ module.exports={
     userhomeGet:async(req,res)=>{
         const banners = await bannerSchema.find()
         const products = await productSchema.find()
-        if(req.session.email){
-            res.render('user/home',{banners,products})
-        }else{
-            res.redirect('/userLogin')
-        }
+        res.render('user/home',{banners,products})
     },
 
     productdetailsGet:async(req,res)=>{
         const id =req.params.id;
-        const productData = await productSchema.find()
+        const productData = await productSchema.findById(id)
         // console.log(productData);
-        res.render('user/productDetails',{productData})
+            res.render('user/productDetails',{productData})
+
     },
 
     userprofilelistGet:async(req,res)=>{

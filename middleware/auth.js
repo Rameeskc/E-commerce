@@ -1,6 +1,7 @@
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 const { User, Admin } = require('../model/signup')
 const bcrypt = require('bcrypt');  
+const flash = require('express-flash')
 
 // login
 
@@ -13,10 +14,12 @@ const logVerify = async (req,res,next)=>{
     }
         const user = await User.findOne({email:email})
         if(!user){
+            req.flash('error','no email')
             res.redirect('/userLogin')
         }
         const passwordMatch = await bcrypt.compare(enteredPassword,user.password)
         if(!passwordMatch){
+            req.flash('error','password not match')
             res.redirect('/userLogin')
         }
         next()
@@ -33,7 +36,7 @@ const signVerify = async (req, res, next) => {
     const { name, email, mobileNumber, password, confirmPassword } = req.body;
     if (!name || !email || !mobileNumber || !password || !confirmPassword) {
         // err = `All fields are required`
-        res.redirect('/userLogin')
+        req.flash('error','all file required')
     }else if (password !== confirmPassword) {
         res.redirect('/userLogin')
     }else if (!passwordRegex.test(password)) {
@@ -88,7 +91,6 @@ const adminlogVerify = async(req,res,next)=>{
 const adminsignVerify=async(req,res,next) => {
     console.log('hello');
     const {name, email, mobileNumber, password, confirmPassword} = req.body;
-    console.log(req.body)
     
     if(!name || !email || !mobileNumber || !password || !confirmPassword){
         return res.redirect('/adminSignup')

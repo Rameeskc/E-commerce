@@ -18,6 +18,8 @@ router.get('/',userAuth.userhomeGet)
       .post('/addProfile',userAuth.addprofilePost)
       .get('/userProfile',userAuth.userprofileGet)
       .get('/editProfile',userAuth.editprofileGet)
+
+      .get('/userProduct',userAuth.allproductsGet)
       
       
       

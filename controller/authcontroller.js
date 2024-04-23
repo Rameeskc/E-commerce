@@ -49,8 +49,9 @@ module.exports ={
         const user = await User.findOne({email:email})
 
         req.session.email = user.email
+        req.session.userid=user._id
 
-        console.log(req.session.email);
+        // console.log( req.session.userid);
         
         if(req.session.email){
             res.redirect('/')
@@ -74,11 +75,7 @@ module.exports ={
         const user = await User.findOne({email:email})
         req.session.email = user.email;
 
-        if(req.session.email){
-            res.redirect('/')
-        }else{
-            res.redirect('/userLogin')
-        }
+        res.redirect('/userLogin')
         
          
     },
@@ -86,7 +83,14 @@ module.exports ={
 
     
     userlogoutGet:(req,res)=>{
-        res.redirect()
+        req.session.destroy(err => {
+            if (err) {
+                console.error('Error destroying session:', err);
+                return res.status(500).send('Internal Server Error');
+            }
+            // Redirect the user to the login page after logout
+            res.redirect('/userLogin');
+        });
     },
 
     otpGet:(req,res)=>{

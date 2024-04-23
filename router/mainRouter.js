@@ -17,6 +17,7 @@ router.get('/adminLogin',auth.adminlogGet)
       .post('/userLogin',validation.logVerify,auth.userloginPost)
       .get('/userSignup',auth.usersignupGet)
       .post('/userSignup',validation.signVerify,auth.usersignupPost)
+      .get('/logOut',auth.userlogoutGet)
       
 
 

@@ -103,7 +103,7 @@ const adminsignVerify=async(req,res,next) => {
     try{
         const existingUser = await Admin.findOne({email:email})
 
-    console.log(existingUser);
+    // console.log(existingUser);
         if(existingUser){
             return res.redirect('/adminSignup')
         }

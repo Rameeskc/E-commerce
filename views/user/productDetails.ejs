@@ -98,21 +98,14 @@
                 <a >
                   <div 
                     class="favIcon position-absolute d-flex justify-content-center align-items-center">
-                  <p><button onclick="wishList(event,'<%= productData._id %>')" style="border: none; background-color: rgb(216, 27, 27);">
+                  <p><button onclick="wishList(event,'<%= productData._id %>')" style="border:none">
                     
 
-
-                     
-
-                        <i class="fa-regular ll<%= productData._id %> fa-heart"></i>
-                      
-                    
-                    
-                      
-                        
-                      
-                      
-
+                    <%if(wishListIcon){%>
+                      <i class="fa-solid fa-heart hai" style="color: #ff0000;"><%wishListIcon%></i>
+                      <%}else{%>
+                        <i class="fa-solid fa-heart hai" style="color: #8d8282;"><%wishListIcon%></i>
+                      <%}%>
                     </i></button></p>
                   
                     <!-- <svg

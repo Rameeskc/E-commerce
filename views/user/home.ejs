@@ -21,6 +21,56 @@
   <body>
     <!-- header -->
     <%- include('header.ejs') %>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-12 searchBar d-flex align-items-center justify-content-center position-relative"
+        >
+          <div
+            class="sortOption position-absolute d-flex align-items-center gap-3"
+          >
+            <div class="fliterIcon">
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 26 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.8333 19.5V17.3333H15.1667V19.5H10.8333ZM6.5 14.0833V11.9167H19.5V14.0833H6.5ZM3.25 8.66667V6.5H22.75V8.66667H3.25Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="searchBox d-flex align-items-center">
+            <input
+              type="text"
+              name="search"
+              placeholder="Search for Products"
+            />
+            <button
+              class="searchBtn d-flex justify-content-center align-items-center"
+            >
+              <svg
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.3333 17.6101L11.0833 12.3455C10.6667 12.6798 10.1875 12.9444 9.64583 13.1394C9.10417 13.3343 8.52778 13.4318 7.91667 13.4318C6.40278 13.4318 5.12153 12.9061 4.07292 11.8545C3.02431 10.803 2.5 9.51818 2.5 8.00007C2.5 6.48196 3.02431 5.19714 4.07292 4.1456C5.12153 3.09407 6.40278 2.5683 7.91667 2.5683C9.43056 2.5683 10.7118 3.09407 11.7604 4.1456C12.809 5.19714 13.3333 6.48196 13.3333 8.00007C13.3333 8.61289 13.2361 9.19088 13.0417 9.73406C12.8472 10.2772 12.5833 10.7577 12.25 11.1756L17.5 16.4402L16.3333 17.6101ZM7.91667 11.7605C8.95833 11.7605 9.84375 11.3949 10.5729 10.6637C11.3021 9.93253 11.6667 9.04464 11.6667 8.00007C11.6667 6.9555 11.3021 6.06761 10.5729 5.33641C9.84375 4.60521 8.95833 4.23961 7.91667 4.23961C6.875 4.23961 5.98958 4.60521 5.26042 5.33641C4.53125 6.06761 4.16667 6.9555 4.16667 8.00007C4.16667 9.04464 4.53125 9.93253 5.26042 10.6637C5.98958 11.3949 6.875 11.7605 7.91667 11.7605Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- end of header -->
 
     <!-- main -->
@@ -55,25 +105,7 @@
                   /></a>
                 </div>
                 <%})%>
-                <!-- <div
-                  class="carousel-item"
-                  data-bs-interval="6000"
-                  data-bs-pause="false"
-                  data-bs-ride="false"
-                >
-                  <a href=""
-                    ><img
-                      src="./images/slideImg/2a.webp"
-                      class="w-100 img-large-screen"
-                      alt="..."
-                  /></a>
-                  <a href=""
-                    ><img
-                      src="./images/slideImg/2as.webp"
-                      class="w-100 img-small-screen"
-                      alt="..."
-                  /></a>
-                </div> -->
+                
               </div>
               <button
                 class="carousel-control-prev"
@@ -124,7 +156,7 @@
                       <a href="/productDetails/<%=data._id%>">
                         <div class="newItems">
                           <div class="productImg">
-                            <img src="./image/<%=data.productImage[0]%>" alt="" />
+                            <img src="./image/<%=data.productImage[0]%>" alt="" >
                           </div>
                           <div class="text-area">
                             <div class="productTittle">
@@ -192,287 +224,7 @@
                       </a>
                     </li>
                     <%})%>
-                    <!-- <li>
-                      <a href="">
-                        <div class="newItems">
-                          <div class="productImg">
-                            <img src="./images/newlyLaunched/2.png" alt="" />
-                          </div>
-                          <div class="text-area">
-                            <div class="productTittle">
-                              <p>COMMANDO Q9</p>
-                            </div>
-                            <div
-                              class="discountPrice d-flex align-items-baseline"
-                            >
-                              <p>₹1999</p>
-                              <p>₹3999</p>
-                            </div>
-                            <div class="property">
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>Pro Gaming Earbuds</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>35Ms Low Latency</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>Quad Mic ENC</p>
-                              </div>
-                            </div>
-                            <div class="colorOptions">
-                              <div class="d-flex align-items-center">
-                                <p>Colors</p>
-                                <div class="d-flex align-items-center">
-                                  <div class="bg-black"></div>
-                                  <div class="bg-white"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="shopOption">
-                              <div class="d-flex align-items-center">
-                                <p>shop Now</p>
-                                <svg
-                                  width="18"
-                                  height="12"
-                                  viewBox="0 0 18 12"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g clip-path="url(#clip0_28_66)">
-                                    <path
-                                      d="M1 1L6 6L1 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.65"
-                                      d="M6 1L11 6L6 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.4"
-                                      d="M11 1L16 6L11 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                  </g>
-                                  <defs>
-                                    <clipPath id="clip0_28_66">
-                                      <rect
-                                        width="18"
-                                        height="12"
-                                        fill="white"
-                                      />
-                                    </clipPath>
-                                  </defs>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <div class="newItems">
-                          <div class="productImg">
-                            <img src="./images/newlyLaunched/2c.png" alt="" />
-                          </div>
-                          <div class="text-area">
-                            <div class="productTittle">
-                              <p>SOUNDBAR S48</p>
-                            </div>
-                            <div
-                              class="discountPrice d-flex align-items-baseline"
-                            >
-                              <p>₹3999</p>
-                              <p>₹13799</p>
-                            </div>
-                            <div class="property">
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>48 Watt Soundbar</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>External Subwoofer</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>2.1 Channel</p>
-                              </div>
-                            </div>
-                            <div class="colorOptions">
-                              <div class="d-flex align-items-center">
-                                <p>Colors</p>
-                                <div class="d-flex align-items-center">
-                                  <div class="bg-black"></div>
-                                  <div class="bg-white"></div>
-                                  <div class="bg-primary"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="shopOption">
-                              <div class="d-flex align-items-center">
-                                <p>shop Now</p>
-                                <svg
-                                  width="18"
-                                  height="12"
-                                  viewBox="0 0 18 12"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g clip-path="url(#clip0_28_66)">
-                                    <path
-                                      d="M1 1L6 6L1 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.65"
-                                      d="M6 1L11 6L6 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.4"
-                                      d="M11 1L16 6L11 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                  </g>
-                                  <defs>
-                                    <clipPath id="clip0_28_66">
-                                      <rect
-                                        width="18"
-                                        height="12"
-                                        fill="white"
-                                      />
-                                    </clipPath>
-                                  </defs>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <div class="newItems">
-                          <div class="productImg">
-                            <img src="./images/newlyLaunched/9.png" alt="" />
-                          </div>
-                          <div class="text-area">
-                            <div class="productTittle">
-                              <p>DUOPODS K2</p>
-                            </div>
-                            <div
-                              class="discountPrice d-flex align-items-baseline"
-                            >
-                              <p>₹1199</p>
-                              <p>₹2999</p>
-                            </div>
-                            <div class="property">
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>HDCalling with AI ENC</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>40 HRS Combine Playtime</p>
-                              </div>
-                              <div>
-                                <img
-                                  src="./images/newlyLaunched/hexagon-list-icon.svg"
-                                  alt=""
-                                />
-                                <p>13mm Electroplated Drivers</p>
-                              </div>
-                            </div>
-                            <div class="colorOptions">
-                              <div class="d-flex align-items-center">
-                                <p>Colors</p>
-                                <div class="d-flex align-items-center">
-                                  <div class="bg-black"></div>
-                                  <div class="bg-white"></div>
-                                  <div class="bg-primary"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="shopOption">
-                              <div class="d-flex align-items-center">
-                                <p>shop Now</p>
-                                <svg
-                                  width="18"
-                                  height="12"
-                                  viewBox="0 0 18 12"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <g clip-path="url(#clip0_28_66)">
-                                    <path
-                                      d="M1 1L6 6L1 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.65"
-                                      d="M6 1L11 6L6 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                    <path
-                                      opacity="0.4"
-                                      d="M11 1L16 6L11 11"
-                                      stroke="#4B4955"
-                                      stroke-width="1.5"
-                                    />
-                                  </g>
-                                  <defs>
-                                    <clipPath id="clip0_28_66">
-                                      <rect
-                                        width="18"
-                                        height="12"
-                                        fill="white"
-                                      />
-                                    </clipPath>
-                                  </defs>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                    </li> -->
+                    
                   </ul>
                 </div>
               </div>
@@ -1015,6 +767,10 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="/js/wishlist.js"></script>
     <!--end of Bootstrap script file -->
   </body>
 </html>

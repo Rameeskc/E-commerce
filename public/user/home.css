@@ -334,7 +334,16 @@ a {
 .text-area {
   text-align: start;
 }
-.productTittle p {
+.productTittle{
+  display: flex;
+  justify-content: space-between;
+}
+.productTittle i{
+  margin-top: 30px;
+
+}
+
+.productTittle p{
   text-transform: uppercase;  
   color: #484955;
   font-family: Ubuntu;
@@ -580,11 +589,37 @@ footer {
   border-radius: 0;
   border: 1px solid lightgrey;
 }
+.searchBar{
+  width: 100vw;
+  height: 4rem;
+  background: linear-gradient(298deg, #111216 -34.19%, rgba(91, 99, 120, 0.00) 1164.24%);
+}
+.searchBox input{
+  outline: none;
+  width: 45vw;
+  height: 2rem;
+  padding: 0.35rem 1.25rem;
+  margin: auto 0;
+  border-radius: 0.25rem 0rem 0rem 0.25rem;
+  background: #FFF;
+  border: none;
+}
+.searchBox input::placeholder{
+  color: rgba(0, 0, 0, 0.50);
+  font-family: Inter;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.searchBtn{
+  width: 3vw;
+  height: 2rem;
+  border-radius: 0rem 0.25rem 0.25rem 0rem;
+  background: #0F0;
+  border: none;
+}
 /*---------- end of footer ----------*/
-
-
-
-
 
 /*---------- media query ----------*/
 @media (max-width: 1472px) {

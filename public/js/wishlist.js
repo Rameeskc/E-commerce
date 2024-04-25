@@ -16,3 +16,15 @@ async function wishList(e, productId) {
         console.log(err);
     }
 }
+
+async function removeWishlist(e,productId){
+    e.preventDefault()
+
+    try{
+        const response = await axios.get(`/removeWishlist/${productId}`)
+
+        
+    }catch(err){
+        console.log(err)
+    }
+}

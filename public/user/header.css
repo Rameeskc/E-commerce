@@ -85,11 +85,7 @@ a {
 .topheaderone {
   justify-content: flex-end;
   border-right: 0.8px solid rgba(0, 255, 0, 0.05);
-  background: linear-gradient(
-    44deg,
-    #111216 -4.62%,
-    rgba(91, 99, 120, 0) 804.71%
-  );
+  background: #976060;
 }
 .topheaderone p {
   padding-left: 0.75rem;
@@ -97,11 +93,7 @@ a {
 }
 .topheadertwo {
   justify-content: flex-start;
-  background: linear-gradient(
-    298deg,
-    #111216 -34.19%,
-    rgba(91, 99, 120, 0) 1164.24%
-  );
+  background: #976060;
   padding-left: 1.25rem;
 }
 .topheadertwo p {
@@ -152,7 +144,7 @@ a {
 .navigation {
   width: 100vw;
   height: 62px;
-  background: linear-gradient(180deg, #d9d9d9 -406.45%, #000 139.51%);
+  background: #976060;
 }
 .hamburger {
   position: relative;
@@ -192,7 +184,7 @@ a {
   width: 100%;
   height: 2px;
   bottom: -3px;
-  background-color: #0f0;
+  background-color: rgb(237, 250, 237);
 }
 .navigationnavbar ul li:last-child {
   margin-right: 2rem;

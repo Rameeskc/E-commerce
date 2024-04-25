@@ -85,11 +85,7 @@ a {
 .topheaderone {
   justify-content: flex-end;
   border-right: 0.8px solid rgba(0, 255, 0, 0.05);
-  background: linear-gradient(
-    44deg,
-    #111216 -4.62%,
-    rgba(91, 99, 120, 0) 804.71%
-  );
+  background:#976060;
 }
 .topheaderone p {
   padding-left: 0.75rem;
@@ -97,11 +93,7 @@ a {
 }
 .topheadertwo {
   justify-content: flex-start;
-  background: linear-gradient(
-    298deg,
-    #111216 -34.19%,
-    rgba(91, 99, 120, 0) 1164.24%
-  );
+  background: #976060;
   padding-left: 1.25rem;
 }
 .topheadertwo p {
@@ -152,7 +144,8 @@ a {
 .navigation {
   width: 100vw;
   height: 62px;
-  background: linear-gradient(180deg, #d9d9d9 -406.45%, #000 139.51%);
+  background: #976060;
+
 }
 .hamburger {
   position: relative;
@@ -320,23 +313,28 @@ a {
   margin-right: 0;
 }
 .newItems {
-  width: 23.75rem;
-  min-height: 36.125rem;
-  background: #f6f6f7;
+  width: 18.75rem;
+  min-height: 28.125rem;
+  background: #976060;
   box-shadow: 0px 23px 40px -31px rgba(0, 0, 0, 0.33);
   padding: 1.25rem 1.25rem;
+  border-radius: 15px;
+  
 }
 .newItems img {
-  width: 300px;
+  width: 230px;
   height: 323px;
-  margin: 0 1.25rem;
+  margin: 15px;
+  border: solid 10px white;
 }
 .text-area {
   text-align: start;
 }
 .productTittle{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+
 }
 .productTittle i{
   margin-top: 30px;
@@ -344,16 +342,23 @@ a {
 }
 
 .productTittle p{
-  text-transform: uppercase;  
-  color: #484955;
+  
+  color: #eed8d8;;
   font-family: Ubuntu;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-style: normal;
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 1rem;
 }
+.discountPrice{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
 .discountPrice p {
   font-family: Ubuntu;
   font-style: normal;
@@ -363,11 +368,11 @@ a {
   margin-bottom: 1rem;
 }
 .discountPrice p:first-child {
-  color: #484955;
+  color: #eed8d8;
   font-size: 1.25rem;
 }
 .discountPrice p:nth-child(2) {
-  color: rgba(72, 73, 85, 0.4);
+  color: #eed8d8;
   font-size: 1rem;
   text-decoration-line: line-through;
 }
@@ -383,14 +388,8 @@ a {
   align-items: center;
   gap: 0.44rem;
 }
-.discription div:nth-child(1) {
-  margin-top: 1rem;
-}
-.discription div img {
-  width: 10px;
-  height: 10px;
-  margin: 0;
-}
+
+
 .discription div p {
   color: rgba(72, 73, 85, 0.65);
   font-family: Ubuntu;
@@ -592,7 +591,7 @@ footer {
 .searchBar{
   width: 100vw;
   height: 4rem;
-  background: linear-gradient(298deg, #111216 -34.19%, rgba(91, 99, 120, 0.00) 1164.24%);
+  background: #976060;
 }
 .searchBox input{
   outline: none;
@@ -616,8 +615,11 @@ footer {
   width: 3vw;
   height: 2rem;
   border-radius: 0rem 0.25rem 0.25rem 0rem;
-  background: #0F0;
+  background: rgb(2, 21, 63);
   border: none;
+}
+#search-btn{
+  color: white;
 }
 /*---------- end of footer ----------*/
 

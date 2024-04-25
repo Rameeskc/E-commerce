@@ -345,7 +345,7 @@ input::-webkit-inner-spin-button {
 .searchBar{
     width: 100vw;
     height: 4rem;
-    background: linear-gradient(298deg, #111216 -34.19%, rgba(91, 99, 120, 0.00) 1164.24%);
+    background: #976060;
 }
 .searchBox input{
     outline: none;
@@ -369,9 +369,12 @@ input::-webkit-inner-spin-button {
     width: 3vw;
     height: 2rem;
     border-radius: 0rem 0.25rem 0.25rem 0rem;
-    background: #0F0;
+    background: rgb(2, 21, 63);
     border: none;
 }
+#search-btn{
+    color: white;
+  }
 .sortOption{
     left: 20px;
 }
@@ -409,9 +412,9 @@ input::-webkit-inner-spin-button {
 .shopItems{
     width: 21.25rem;
     border-radius: 1.125rem;
-    border: 1px solid rgba(238, 238, 238, 0.50);
-    background: #FFF;
-    box-shadow: 0px 23px 30px 0px #E4E4E4;
+    /* border: 1px solid rgba(238, 238, 238, 0.50); */
+    background: #976060;
+    box-shadow: 0px 23px 30px 0px #888181;
     margin: 0 auto;
     padding: 1.25rem;
     font-family: Inter;
@@ -424,15 +427,11 @@ input::-webkit-inner-spin-button {
     width: 18.75rem;
     height: 20.4375rem;
     border-radius: 0.875rem;
+    
 }
-.itemImgOne{
-    background: #E4EFF6;
-}
-.itemImgTwo{
-    background: #FAE8E7;
-}
-.itemImgThree{
-    background: #E4EFF6;
+
+#bag{
+    background-color:white;
 }
 .itemImg img{
     width: 280px;
@@ -453,7 +452,7 @@ input::-webkit-inner-spin-button {
     margin-bottom: 12px;
 }
 .itemDescription p{
-    color: #555;
+    color: #eed8d8;
     font-size: 0.9rem;
     font-weight: 400;
     margin-bottom: 1rem;
@@ -463,12 +462,12 @@ input::-webkit-inner-spin-button {
     margin-bottom: 1rem;
 }
 .price p:nth-child(1){
-    color: #2D2D2D;
+    color: #eed8d8;
     font-size: 20px;
     font-weight: 500;
 }
 .price p:nth-child(2){
-    color: #585858;
+    color: #eed8d8;
     font-size: 16px;
     font-weight: 500;
     text-decoration-line: line-through;

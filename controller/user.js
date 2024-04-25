@@ -11,7 +11,7 @@ module.exports = {
         const banners = await bannerSchema.find()
         const products = await productSchema.find()
         const userId = req.session.userid 
-    //    console.log(req.session.productId,'muees kuttttttaaaaaaa');
+
         res.render('user/home', { banners, products})
     },
 
@@ -31,7 +31,7 @@ module.exports = {
                     }
                 }
                 req.session.wishListIcon=wishListIcon
-                console.log('iam juucart',req.session.wishListIcon)
+                
                 res.render('user/productDetails', { productData, wishListIcon })
             } catch (err) {
                 console.log(err)
@@ -90,8 +90,5 @@ module.exports = {
         res.render('user/editProfile')
     },
 
-    addcartGet: (req, res) => {
-        res.render('user/cart')
-    },
-
+    
 }

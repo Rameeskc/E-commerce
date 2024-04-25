@@ -40,13 +40,14 @@
                 <div class="mainItem">
                   <div
                     class="itemImg itemImgThree d-flex align-items-center position-relative justify-content-center"
+                    id="image-area"
                   >
                     
                     <img src="/image/<%=data.productImage %>" alt="" />
                   </div>
                   <div class="itemDescription text-center">
                     <h2><%=data.productName %></h2>
-                    <p><%=data.productDescription %><</p>
+                    
                     <div
                       class="price d-flex align-items-baseline justify-content-center"
                     >
@@ -54,9 +55,10 @@
                       <p class="p-0 m-0">₹<%=data.productPrice %></p>
                     </div>
                     <div>
-                      <a href="/buyNow">
-                        <button class="buyBtn">BUY NOW</button>
-                      </a>
+                        <button onclick="removeWishlist(event,'<%=data._id %>')" class="buyBtn" style=" background-color: red;">Remove</button>
+                      
+                        <button class="buyBtn">Add to cart</button>
+                    
                     </div>
                   </div>
                 </div>
@@ -568,6 +570,13 @@
       </div>
     </footer>
     <!-- end of footer -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+
+
+    <script src="/js/wishlist.js"></script>/
 
     <!-- custom js -->
     <script src="./js/userSingleProductPage.js"></script>

@@ -369,7 +369,7 @@ input::-webkit-inner-spin-button {
     width: 3vw;
     height: 2rem;
     border-radius: 0rem 0.25rem 0.25rem 0rem;
-    background: #0F0;
+    /* background: #0F0; */
     border: none;
 }
 .sortOption{
@@ -410,7 +410,7 @@ input::-webkit-inner-spin-button {
     width: 21.25rem;
     border-radius: 1.125rem;
     border: 1px solid rgba(238, 238, 238, 0.50);
-    background: #FFF;
+    background: #976060;
     box-shadow: 0px 23px 30px 0px #E4E4E4;
     margin: 0 auto;
     padding: 1.25rem;
@@ -424,6 +424,7 @@ input::-webkit-inner-spin-button {
     width: 18.75rem;
     height: 20.4375rem;
     border-radius: 0.875rem;
+    
 }
 .itemImgOne{
     background: #E4EFF6;
@@ -433,6 +434,9 @@ input::-webkit-inner-spin-button {
 }
 .itemImgThree{
     background: #E4EFF6;
+}
+#image-area{
+    background-color: white;
 }
 .itemImg img{
     width: 280px;
@@ -447,13 +451,13 @@ input::-webkit-inner-spin-button {
     padding: 1.5rem 0 0.25rem 0;
 }
 .itemDescription h2{
-    color: #191919;
-    font-size: 1.5rem;
+    color: #eed8d8;
+    font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 12px;
 }
 .itemDescription p{
-    color: #555;
+    color: #eed8d8;
     font-size: 0.9rem;
     font-weight: 400;
     margin-bottom: 1rem;
@@ -463,12 +467,12 @@ input::-webkit-inner-spin-button {
     margin-bottom: 1rem;
 }
 .price p:nth-child(1){
-    color: #2D2D2D;
+    color: #eed8d8;
     font-size: 20px;
     font-weight: 500;
 }
 .price p:nth-child(2){
-    color: #585858;
+    color:#eed8d8;
     font-size: 16px;
     font-weight: 500;
     text-decoration-line: line-through;

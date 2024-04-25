@@ -168,9 +168,9 @@
                 <a href="/userBuyNow/id">
                   <button class="buyBtn">Buy Now</button>
                 </a>
-                <a href="/userCartNow/id">
-                  <button class="cartBtn">add to cart</button>
-                </a>
+                
+                  <button onclick="addToCart(event,'<%=productData._id %>')" class="cartBtn">add to cart</button>
+                
               </div>
             </div>
             
@@ -802,4 +802,5 @@
   </body>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/js/wishlist.js"></script>
+<script src ="/js/cart.js"></script>
 </html>

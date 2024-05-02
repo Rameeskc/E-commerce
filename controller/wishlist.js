@@ -77,8 +77,8 @@ module.exports = {
                 const email = req.session.email
                 const user = await User.findOne({ email: email })
                 const userobjId = user._id
-                const wishdata = await wishlistSchema.findOne({ userId: userobjId })
                 const productObjId = new mongoose.Types.ObjectId(productId);
+                const wishdata = await wishlistSchema.findOne({ userId: userobjId })
 
                 if (wishdata.productId.includes(productObjId)) {
                     await wishlistSchema.updateOne(
@@ -86,7 +86,8 @@ module.exports = {
                         { $pull: { productId: productObjId } }
                     )
                 }
-                res.redirect('/wishlist')
+                res.status(200).send({message:"ok"})
+                
             }catch(err){
                 console.log(err)
             }  

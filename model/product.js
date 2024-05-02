@@ -7,23 +7,27 @@ const ProductSchema = new mongoose.Schema({
         required:true
     },
     productPrice:{
-        type:String,
+        type:Number,
         required:true
     },
     productDiscount:{
-        type:String,
+        type:Number,
         required:true
     },
     productDiscounted:{
-        type:String,
+        type:Number,
         required:true
+    },
+    productDiscountedAmount:{
+        type:Number,
+        require:true
     },
     productDescription:{
         type:String,
         required:true
     },
     productQuantity:{
-        type:String,
+        type:Number,
         required:true
     },
     productSize:{
@@ -33,6 +37,10 @@ const ProductSchema = new mongoose.Schema({
     productImage:{
         type:Array,
     },
+    disable:{
+        type:Boolean,
+        default:true
+    }
 })
 
 module.exports=mongoose.model('products',ProductSchema)

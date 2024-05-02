@@ -25,7 +25,9 @@ router.get('/',userAuth.userhomeGet)
       
       .post('/addToCart/:id',cart.addToCart)
       .get('/cart',cart.cartGet)
-      .get('removeCart',cart.removeCart)
+      .get('/removeCart/:id',cart.removeCart)
+      .post('/cartInc',cart.updateQuantity)
+      
       
 
       .post('/wishlist',wishList.addToWishlist)

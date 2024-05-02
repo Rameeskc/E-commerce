@@ -38,6 +38,7 @@ module.exports = {
             res.status(500).send("Error adding category");
         }
     },
+    
     editcategoriesGet: async (req, res) => {
         //  console.log(req.params)
         const { id } = req.params

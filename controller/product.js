@@ -21,7 +21,7 @@ const roundedValue = Math.round(discountedValue)
 console.log(discountedValue,roundedValue);
 
 try {
-  await productSchema.create({ ...req.body, productImage: productImage, productDiscounted:roundedValue});
+  await productSchema.create({ ...req.body, productImage: productImage, productDiscounted:roundedValue ,productDiscountedAmount:discounted});
   res.redirect('/adminProduct')
 } catch (err) {
   console.error(err);
@@ -47,7 +47,7 @@ editproductPost:async(req,res)=>{
     const discountedValue=productPrice-discounted
     const roundedValue = Math.round(discountedValue)    
 
-    const newData = { ...req.body , productDiscounted:roundedValue}
+    const newData = { ...req.body , productDiscounted:roundedValue, productDiscountedAmount:discounted}
     if(productImage.length){
         newData['productImage'] = productImage
     }

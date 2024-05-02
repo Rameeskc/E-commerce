@@ -18,11 +18,16 @@ async function wishList(e, productId) {
 }
 
 async function removeWishlist(e,productId){
-    e.preventDefault()
-
+    
     try{
+        e.preventDefault()
         const response = await axios.get(`/removeWishlist/${productId}`)
+        
+        if(response.data.message=="ok"){
 
+            window.location.reload()
+
+        }
         
     }catch(err){
         console.log(err)

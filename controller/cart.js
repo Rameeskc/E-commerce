@@ -75,7 +75,7 @@ module.exports = {
                     },0)
                     
                     console.log(subtotal,totalAmount);
-const discountAmount = subtotal-totalAmount
+                    const discountAmount = subtotal-totalAmount
 
                     res.render('user/cart', { cartData , totalAmount, discountAmount,subtotal });
                 }
@@ -121,7 +121,7 @@ const discountAmount = subtotal-totalAmount
                         return acc+=data.productId.productDiscounted * data.quantity
                     },0)
                     
-const discount = subtotal-totalAmount
+                    const discount = subtotal-totalAmount
                     
 
                     const cart = await cartSchema.updateOne(
@@ -178,7 +178,7 @@ const discount = subtotal-totalAmount
                         {userId:userObjId},
                         {total:totalAmount}
                     )
-                    return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });
+                    return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });   
                     
                 // Send the 'ok' message as the response
                 res.send({ message: 'ok' , subtotal, totalAmount, discount  });

@@ -48,6 +48,12 @@ router.get('/adminHome',auth.adminHome)
 
 
       .get('/adminCoupon',couponAuth.couponGet)
+      .get('/addCoupon',couponAuth.addcouponGet)
+      .post('/addCoupon',couponAuth.addcouponPost)
+      .get('/editCoupon/:id',couponAuth.editCouponGet)
+      .post('/editCoupon/:id',couponAuth.editCouponPost)
+      .get('/deleteCoupon/:id',couponAuth.deleteCouponGet)
+
 
 
 

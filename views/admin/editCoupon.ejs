@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/admin/addCoupon.css">
+</head>
+<body>
+    <div class="box-2">
+        <div class="add-coupon">
+          <form action="/editCoupon/<%=couponData._id%>" method="post">
+          <div class="data">
+            <label for="code">code</label><br>
+            <input type="text" id="code" name="code" value="<%=couponData.couponText%>" required>
+          </div>
+          <div class="data">
+            <label for="date">due date</label><br>
+            <input type="date" id="date" name="date" value="<%=couponData.date%>" required>
+          </div>
+          <div class="data">
+            <label for="amount">discount amount</label><br>
+            <input type="number" id="discountAmount" name="discountAmount" value="<%=couponData.discount%>" required>
+          </div>
+          <div class="data">
+            <label for="condition">condition</label><br>
+            <input type="text" id="condition" name="condition" value="<%=couponData.condition%>" required>
+          </div>
+          <div class="data">
+            <button id="addCoupon" type="submit">submit</button>
+          </div>
+        </form>
+        </div>
+      </div>
+
+</body>
+</html>

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ecart</title>
+    <title>Login Account</title>
+    <!-- <link rel="shortcut icon" href="#" type="image/x-icon" /> -->
     <!-- Bootstrap css cdn link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -11,264 +12,215 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/user/productDetails.css">
     <!-- end of Bootstrap css cdn link -->
     <!-- Style css -->
-    <link rel="stylesheet" href="./css/productDetailPAge.css" />
+    <link rel="stylesheet" href="/user/checkOut.css" />
     <!-- end of Style css -->
   </head>
   <body>
     <!-- header -->
-
     <%- include('header.ejs') %>
-    
     <!-- end of header -->
 
     <!-- main -->
     <main>
-      <div class="container-fluid">
-        <div class="row">
-          <div
-            class="col-12 searchBar d-flex align-items-center justify-content-center position-relative"
-          >
-            <div
-              class="sortOption position-absolute d-flex align-items-center gap-3"
-            >
-              <div class="fliterIcon">
-                <svg
-                  width="26"
-                  height="26"
-                  viewBox="0 0 26 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10.8333 19.5V17.3333H15.1667V19.5H10.8333ZM6.5 14.0833V11.9167H19.5V14.0833H6.5ZM3.25 8.66667V6.5H22.75V8.66667H3.25Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
-            </div>
-            <div class="searchBox d-flex align-items-center">
-              <input
-                type="text"
-                name="search"
-                placeholder="Search for Products"
-              />
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="changeAddressModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content bg-white eachAdd border-0">
+            <div class="modal-header">
+              <h5
+                class="modal-title"
+                id="exampleModalLabel"
+              >
+                Address
+              </h5>
               <button
-                class="searchBtn d-flex justify-content-center align-items-center"
-              >
-                <svg
-                  width="20"
-                  height="21"
-                  viewBox="0 0 20 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.3333 17.6101L11.0833 12.3455C10.6667 12.6798 10.1875 12.9444 9.64583 13.1394C9.10417 13.3343 8.52778 13.4318 7.91667 13.4318C6.40278 13.4318 5.12153 12.9061 4.07292 11.8545C3.02431 10.803 2.5 9.51818 2.5 8.00007C2.5 6.48196 3.02431 5.19714 4.07292 4.1456C5.12153 3.09407 6.40278 2.5683 7.91667 2.5683C9.43056 2.5683 10.7118 3.09407 11.7604 4.1456C12.809 5.19714 13.3333 6.48196 13.3333 8.00007C13.3333 8.61289 13.2361 9.19088 13.0417 9.73406C12.8472 10.2772 12.5833 10.7577 12.25 11.1756L17.5 16.4402L16.3333 17.6101ZM7.91667 11.7605C8.95833 11.7605 9.84375 11.3949 10.5729 10.6637C11.3021 9.93253 11.6667 9.04464 11.6667 8.00007C11.6667 6.9555 11.3021 6.06761 10.5729 5.33641C9.84375 4.60521 8.95833 4.23961 7.91667 4.23961C6.875 4.23961 5.98958 4.60521 5.26042 5.33641C4.53125 6.06761 4.16667 6.9555 4.16667 8.00007C4.16667 9.04464 4.53125 9.93253 5.26042 10.6637C5.98958 11.3949 6.875 11.7605 7.91667 11.7605Z"
-                    fill="black"
-                  />
-                </svg>
-              </button>
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 padding">
-            <div class="imgMain">
-              <div
-                class="d-flex justify-content-center align-items-center position-relative demo-area mainImg"
-              >
-                <!-- <div class="demo-area position-relative">
-                  
-                </div> -->
-                
-                <img
-                class="demo-trigger mainFistImg"
-                src="/image/<%= productData.productImage[0]%>"
-                data-zoom="./images/Items/1c.png"
-                alt=""
-                />
-                
-                <a >
-                  <div 
-                    class="favIcon position-absolute d-flex justify-content-center align-items-center">
-                  <p><button onclick="wishList(event,'<%= productData._id %>')" style="border:none">
-                    
-
-                    <%if(wishListIcon){%>
-                      <i class="fa-solid fa-heart hai" style="color: #ff0000;"><%wishListIcon%></i>
-                      <%}else{%>
-                        <i class="fa-solid fa-heart hai" style="color: #8d8282;"><%wishListIcon%></i>
-                      <%}%>
-                    </i></button></p>
-                  
-                    <!-- <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                    > -->
-                      <path
-                        d="M1.67344 10.5609L8.02617 16.4918C8.28984 16.7379 8.63789 16.875 9 16.875C9.36211 16.875 9.71016 16.7379 9.97383 16.4918L16.3266 10.5609C17.3953 9.56602 18 8.17032 18 6.71133V6.50743C18 4.05001 16.2246 1.95469 13.8023 1.5504C12.1992 1.28321 10.568 1.80704 9.42188 2.95313L9 3.37501L8.57812 2.95313C7.43203 1.80704 5.80078 1.28321 4.19766 1.5504C1.77539 1.95469 0 4.05001 0 6.50743V6.71133C0 8.17032 0.604687 9.56602 1.67344 10.5609Z"
-                        fill="#FF0000"
-                      />
-                    </svg>
-                  </div>
-                </a>
+            <div class="modal-body">
+              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
+                <p class="name">John D</p>
+                <p>Abc house, abc street,PIN: 673478</p>
+                <p class="phone">Phone: 98675555568</p>
+                <input name="adId" class="position-absolute radio" type="radio" value="proId1">
+              </div>
+              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
+                <p class="name">John D</p>
+                <p>Abc house, abc street,PIN: 673478</p>
+                <p class="phone">Phone: 98675555568</p>
+                <input name="adId" class="position-absolute radio" type="radio" value="proId2">
+              </div>
+              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
+                <p class="name">John D</p>
+                <p>Abc house, abc street,PIN: 673478</p>
+                <p class="phone">Phone: 98675555568</p>
+                <input name="adId" class="position-absolute radio" type="radio" value="proId3">
+              </div>
+              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
+                <p class="name">John D</p>
+                <p>Abc house, abc street,PIN: 673478</p>
+                <p class="phone">Phone: 98675555568</p>
+                <input name="adId" class="position-absolute radio" type="radio" value="proId4">
               </div>
               
-              <div class="d-flex align-items-center">
-                <div onclick="changeImg('./images/Items/9c.png')" class="smImg">
-                  <img src="./images/Items/9c.png" alt="" />
-                </div>
-                <div onclick="changeImg('./images/Items/2c.png')" class="smImg">
-                  <img src="./images/Items/2c.png" alt="" />
-                </div>
-                <div onclick="changeImg('./images/Items/6c.png')" class="smImg">
-                  <img src="./images/Items/6c.png" alt="" />
-                </div>
-                <div onclick="changeImg('./images/Items/1c.png')" class="smImg">
-                  <img src="./images/Items/1c.png" alt="" />
-                </div>
-              </div>
+              <p class="m-0"><a href="/" class="button">Add Address</a></p>
             </div>
-            
-
-            
-            <div class="productContent">
-              <h2 class="pName"> <%=productData.productName%></h2>
-              <!-- <p class="sTittle">48 Watts Soundbar</p> -->
-              <h2 class="hDescription"> <%=productData.productDescription%></h2>
-              <!-- <p class="pDescription">
-                The first-of-their-kind 48-Watt soundbar with an external
-                Subwoofer with each are here to change audio experience for you.
-                Experience pure audio in 48 watts like never before.
-              </p> -->
-              <p class="product-size">size:<%=productData.productSize%></p>
-              <div class="rating d-flex">
-                <p class="ratedStar">★</p>
-                <p class="ratedStar">★</p>
-                <p class="ratedStar">★</p>
-                <p class="ratedStar">★</p>
-                <p class="unRatedStar">★</p>
-              </div>
-              <div class="price">
-                <p class="lPrice">₹<%=productData.productDiscounted%></p>
-                <p class="fPrice">₹<%=productData.productPrice %></p>
-              </div>
-              <p class="stock text-success">In Stock</p>
-              <div class="btnBuy">
-                <a href="/buyToCheckout">
-                  <button class="buyBtn" onclick="addToCheckout(event,'<%=productData._id%>')">Buy Now</button>
-                </a>
-                
-                <button onclick="addToCart(event, '<%=productData._id %>')" class="cartBtn">add to cart</button>
-
-                
-              </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary bg-danger text-white"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <!-- Add additional buttons or actions as needed -->
             </div>
-            
-            
           </div>
         </div>
       </div>
+      <!-- end of Modal -->
+      <div class="container-fluid main">
+        <div class="row mainContainer">
+          <div class="col-12">
+            <div class="cartBody d-flex">
+              <div class="col-6 oneSection">
+                <div class="cartItems">
+                  <div class="items position-relative mb-3">
+                    <div class="d-flex payOptions align-items-center gap-3">
+                      <input
+                        class="pay"
+                        name="payMethode"
+                        value="OP"
+                        type="radio"
+                        id="creditCard"
+                      />
+                      <h2 class="m-0">Credit Card</h2>
+                    </div>
+                    <div class="credit">
+                      <label for="cCNo" class="d-block"
+                        >Credit card number</label
+                      >
+                      <input type="number" name="cCNo" />
+                      <div class="d-flex gap-3 w-100">
+                        <div class="w-50">
+                          <label for="expiry" class="d-block"
+                            >Expiry (MM/YY)</label
+                          >
+                          <input type="text" class="w-100" name="expiry" />
+                        </div>
+                        <div class="w-50">
+                          <label for="CVV" class="d-block">CVV</label>
+                          <input type="number" class="w-100" name="CVV" />
+                        </div>
+                      </div>
+                      <label for="nOC" class="d-block">Name on the card</label>
+                      <input type="number" name="nOC" />
+                    </div>
+                  </div>
+
+                  <div class="items position-relative mb-3">
+                    <div class="d-flex payOptions align-items-center gap-3">
+                      <input
+                        class="pay"
+                        name="payMethode"
+                        value="COD"
+                        type="radio"
+                        id="COD"
+                      />
+                      <h2 class="m-0">Cash On Delivery (COD)</h2>
+                    </div>
+                  </div>
+
+                  <div class="orderSummary m-0 w-100">
+                    <div class="orderHeading">
+                      <h2>Delivery Address</h2>
+                    </div>
+                    <div class="deleviryContent">
+                      <div class="chooseAdd position-relative">
+                        <div class="existingAddress">
+                          <p class="name">John D</p>
+                          <p>Abc house, abc street,PIN: 673478</p>
+                          <p class="phone">Phone: 98675555568</p>
+                        </div>
+                        <a
+                          href="/userChangeAddress"
+                          data-bs-toggle="modal"
+                          data-bs-target="#changeAddressModal"
+                        >
+                          <button class="position-absolute button">
+                            Change
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 oneSection">
+                <div class="orderSummary">
+                  <div class="orderHeading">
+                    <h2>order summary</h2>
+                  </div>
+                  <div class="orderContent">
+                    <div
+                      class="sTotal d-flex justify-content-between align-items-center"
+                    >
+                      <p class="commonText m-0 p-0">Subtotal</p>
+                      <p class="commonSub m-0 p-0" id="sTotal">₹27,598</p>
+                    </div>
+
+                    <div
+                      class="ship d-flex justify-content-between align-items-center"
+                    >
+                      <p class="commonText m-0 p-0">Shipping</p>
+                      <p class="commonSub m-0 p-0" id="free">FREE</p>
+                    </div>
+
+                    <div
+                      class="ship d-flex justify-content-between align-items-center"
+                    >
+                      <p class="commonText m-0 p-0">Discount</p>
+                      <p class="commonSub m-0 p-0" id="dPrice">-19,600</p>
+                    </div>
+
+                    <div
+                      class="ship d-flex justify-content-between align-items-center"
+                    >
+                      <p class="commonText m-0 p-0">Coupon Discount</p>
+                      <p class="commonSub m-0 p-0" id="cDPrice">0</p>
+                    </div>
+                  </div>
+                  <div
+                    class="commonText tPrice d-flex justify-content-between align-items-center"
+                  >
+                    <p class="m-0 p-0">Total</p>
+                    <p class="m-0 p-0" id="tPrice">₹7,998</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="rateReview">
-              <div
-                class="review d-flex align-items-center justify-content-between"
-              >
-                <h2>Ratings & Reviews</h2>
-                <a href="/userProductRate/id">
-                  <button>Rate Product</button>
-                </a>
-              </div>
-              <div class="content">
-                <div class="userReview">
-                  <h2>Great product</h2>
-                  <div class="rating d-flex">
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                  </div>
-                  <p class="reviewDetails">
-                    It's sound quality is perfect as well as very loud and
-                    clear. It's built quality is upto the mark because it's
-                    woofer is made up of wood which is very good and it's bass
-                    and treble is very amazing after all you can listen any song
-                    and watch any movie like cinema hall experience. Overall it
-                    is best for this price.
-                  </p>
-                  <p class="ratedUserName">User 1</p>
-                </div>
-                <div class="userReview">
-                  <h2>Great product</h2>
-                  <div class="rating d-flex">
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                  </div>
-                  <p class="reviewDetails">
-                    It's sound quality is perfect as well as very loud and
-                    clear. It's built quality is upto the mark because it's
-                    woofer is made up of wood which is very good and it's bass
-                    and treble is very amazing after all you can listen any song
-                    and watch any movie like cinema hall experience. Overall it
-                    is best for this price.
-                  </p>
-                  <p class="ratedUserName">User 1</p>
-                </div>
-                <div class="userReview">
-                  <h2>Great product</h2>
-                  <div class="rating d-flex">
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                  </div>
-                  <p class="reviewDetails">
-                    It's sound quality is perfect as well as very loud and
-                    clear. It's built quality is upto the mark because it's
-                    woofer is made up of wood which is very good and it's bass
-                    and treble is very amazing after all you can listen any song
-                    and watch any movie like cinema hall experience. Overall it
-                    is best for this price.
-                  </p>
-                  <p class="ratedUserName">User 1</p>
-                </div>
-                <div class="userReview">
-                  <h2>Great product</h2>
-                  <div class="rating d-flex">
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                    <p class="ratedStar">★</p>
-                  </div>
-                  <p class="reviewDetails">
-                    It's sound quality is perfect as well as very loud and
-                    clear. It's built quality is upto the mark because it's
-                    woofer is made up of wood which is very good and it's bass
-                    and treble is very amazing after all you can listen any song
-                    and watch any movie like cinema hall experience. Overall it
-                    is best for this price.
-                  </p>
-                  <p class="ratedUserName">User 1</p>
-                </div>
-              </div>
+            <div class="checkOut">
+              <form action="/userCartCheckOut">
+                <button>Proceed to payment</button>
+              </form>
             </div>
           </div>
         </div>
@@ -777,8 +729,7 @@
     <!-- end of footer -->
 
     <!-- custom js -->
-    <script src="https://cdn.jsdelivr.net/npm/drift-zoom@1.5.0/dist/Drift.min.js"></script>
-    <script src="./js/productDetailPAge.js"></script>
+    <script src="./js/userPayment.js"></script>
     <!-- end of custom js -->
     <!-- fontawesome -->
     <script
@@ -792,17 +743,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-
-
-    <!-- <script src="/js/wishlist.js"></script> -->
-
-    <!-- axios cdn -->
-    
-    
     <!--end of Bootstrap script file -->
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/js/wishlist.js"></script>
-<script src ="/js/cart.js"></script>
 </html>

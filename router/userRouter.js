@@ -7,6 +7,8 @@ const router = express.Router()
 const userAuth = require('../controller/user')
 const wishList = require('../controller/wishlist')
 const cart = require('../controller/cart')
+const checkOut = require('../controller/checkOut')
+const profile = require('../controller/profile')
 
 
 
@@ -14,11 +16,15 @@ const cart = require('../controller/cart')
 router.get('/',userAuth.userhomeGet)
       .get('/productDetails/:id',userAuth.productdetailsGet)
       
-      .get('/userprofileList',userAuth.userprofilelistGet)
-      .get('/addProfile',userAuth.addprofileGet)
-      .post('/addProfile',userAuth.addprofilePost)
-      .get('/userProfile',userAuth.userprofileGet)
-      .get('/editProfile',userAuth.editprofileGet)
+
+      .get('/userprofileList',profile.userprofilelistGet)
+      .get('/addProfile',profile.addprofileGet)
+      .post('/addProfile',profile.addprofilePost)
+      .get('/userProfile',profile.userprofileGet)
+      .get('/editProfile/:id',profile.editprofileGet)
+      .post('/editProfile/:id',profile.editprofilePost)
+      .get('/deleteProfile/:id',profile.deleteProfileGet)
+
       
       
       .get('/userProduct',userAuth.allproductsGet)
@@ -33,6 +39,9 @@ router.get('/',userAuth.userhomeGet)
       .post('/wishlist',wishList.addToWishlist)
       .get('/wishlistPage',wishList.wishlistGet)
       .get('/removeWishlist/:id',wishList.removewishlistGet)
+
+      .get('/cartToCheckout',checkOut.cartToCheckoutGet)
+      .get('/buyToCheckout',checkOut.buyToCheckoutGet)
 
         
 

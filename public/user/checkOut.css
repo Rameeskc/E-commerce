@@ -259,7 +259,7 @@ a {
   background: #fff;
 }
 .cartHead {
-  padding: 1rem;
+  padding: 1.5rem 1.25rem;
   border-bottom: 1px solid #e0e0e0;
 }
 .cartHead h2 {
@@ -271,15 +271,170 @@ a {
   line-height: normal;
 }
 .cartBody {
-  padding: 1.25rem;
+  padding: 1.5rem 1.25rem;
+}
+.contentDiv {
+  width: 100%;
+  height: 100%;
+}
+.items {
+  width: 80%;
+  min-width: -webkit-fill-available;
+  border: 1px solid #e0e0e0;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+}
+.itemImg {
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(75, 73, 85, 0.1) 0%,
+    rgba(75, 73, 85, 0.1) 100%
+  );
+}
+.itemImg img {
+  aspect-ratio: 3/2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.productDetails {
+  height: 100%;
+}
+.productDetails h2 {
+  color: #000;
+  font-family: Ubuntu;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0.75rem;
+}
+.quandity div {
+  width: 36px;
+  height: 25px;
+  border: 1px solid #e0e0e0;
+  background-color: white;
+  margin-bottom: 0.75rem;
+}
+.quandity div i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8px;
+  height: 8px;
+  object-fit: contain;
+}
+.quandity div:first-child,
+.quandity div:last-child {
+  width: 24px;
+  cursor: pointer;
+  background-color: #eee;
+}
+#qty {
+  color: #000;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  user-select: none;
+}
+.color {
+  color: rgba(0, 0, 0, 0.4);
+  font-family: Inter;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.cName {
+  text-transform: capitalize;
+  color: #000;
+  font-family: Inter;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 1.2rem;
+}
+.price {
+  font-style: normal;
+  line-height: normal;
+  text-transform: uppercase;
+  font-family: Ubuntu;
+}
+.price p:nth-child(1) {
+  color: #212121;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.price p:nth-child(2) {
+  color: #bdbdbd;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration-line: line-through;
+}
+.price p:nth-child(3) {
+  color: #3cb77c;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.deleteBtn {
+  top: 14px;
+  right: 14px;
+}
+.deleteBtn svg {
+  width: 13px;
+  height: 17px;
+}
+.coupons {
+  margin-bottom: 2rem;
+}
+.coupons input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+  font-family: Ubuntu;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: capitalize;
+}
+.coupons input {
+  outline: none;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  height: 2.5rem;
+  padding: 0.5rem;
+}
+.coupons button {
+  outline: none;
+  padding: 0.5rem;
+  height: 2.5rem;
+  border: 1px solid #e0e0e0;
+  border-left: 0;
+  background: rgba(238, 238, 238, 0.93);
+  color: #424242;
+  font-family: Ubuntu;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.input {
+  width: 100%;
 }
 .cartHead svg {
-  width: 35px;
-  height: 35px;
+  width: 24px;
+  height: 24px;
 }
 .orderSummary {
   margin-left: auto;
   width: 80%;
+  border: 1px solid #e0e0e0;
   background: #fff;
   margin-bottom: 2rem;
 }
@@ -375,107 +530,84 @@ a {
   margin-bottom: 2rem;
   padding: 0 3%;
 }
-.pInfo{
-    padding: 1rem;
-    border-radius: 9px;
-    border: 1px solid #e0e0e0;
+.payOptions h2{
+  color: #000;
+  font-family: Ubuntu;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
-.editBody h2{
-    color: #000;
-    font-family: Ubuntu;
-    font-size: 0.9rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-bottom: 0.75rem;
+.pay{
+  width: 1.25rem;
+  height: 1.25rem;
 }
-.pInfo p{
-    color: #000;
-    font-family: Ubuntu;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-bottom: 0.5rem;
+.credit{
+  transition: all 0.6s ease-in-out;
+  transform-origin: top;
+  display: none;
 }
-.pInfo span{
-    font-weight: 400;
+label{
+  color: rgba(0, 0, 0, 0.75);
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0.75rem;
 }
-.pInfo{
-    margin-bottom: 1.25rem;
-}
-.saveBtn{
-    margin-top: 0.65rem;
-    border: transparent;
-    outline: transparent;
-    background-color: #0f0;
-    color: #000;
-    font-family: Ubuntu;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    width: 6.5rem;
-    height: 2rem;
-    border-radius: 4px;
-}
-.cardOptions{
-    border-radius: 9px;
-    width: 8rem;
-    border: 1px solid #e0e0e0;
-    padding: 1rem 0;
-    margin-bottom: 1rem;
-}
-.cardOptions svg{
-    width: 42px;
-    height: 42px;
-    margin-bottom: 0.2rem;
-}
-.cardOptions p{
-    color: #000;
-    font-family: Ubuntu;
-    font-size: 0.8rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-.editBody{
-    padding: 2.25rem;
-}
-.editBody label{
-    color: #000;
-    font-family: Ubuntu;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-bottom: 0.65rem;
-}
-.editBody input{
-    outline: transparent;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: 1px solid #E0E0E0;
-    background: #FFF;
-    margin-bottom: 0.65rem;
-    font-family: Ubuntu;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.credit input{
+  border-radius: 0.4375rem;
+  border: 1px solid #E0E0E0;
+  background: #FFF;
+  outline: none;
+  padding: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-.left{
-    min-width: fit-content;
-    margin-left: auto;
+.credit{
+  padding-top: 2rem;
 }
-.twoBtn{
-    display: none;
+.togggle{
+  display: block;
 }
-.sides{
-    width: 50%;
+.checkOut button {
+  padding: 1rem;
+  border: transparent;
+  outline: transparent;
+  color: white;
+  font-family: Inter;
+  background-color: #000;
+  font-size: 0.6rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.175rem;
+  text-transform: uppercase;
+}
+.modal-header,
+.modal-body{
+  border-bottom: 1px solid #E0E0E0;
+}
+.eachAdd{
+  box-shadow: 0px 4px 18px 10px rgba(0, 0, 0, 0.25);
+}
+.radio{
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+}
+.exampleModalLabel{
+  color: #000;
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 /*---------- end of main COntent ----------*/
 
@@ -593,11 +725,6 @@ footer {
 /*---------- end of footer ----------*/
 
 /*---------- media query ----------*/
-@media (max-width: 1536px) {
-    .mainContainer{
-        width: 699px;
-    }
-}
 @media (max-width: 1472px) {
   .navigation {
     padding: 0 9.5%;
@@ -761,19 +888,30 @@ footer {
     height: 15px;
   }
   .checkOut button {
-    width: 8rem;
     border: transparent;
     outline: transparent;
-    color: #000;
+    color: white;
     font-family: Inter;
-    font-size: 0.7rem;
+    background-color: #000;
+    font-size: 0.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.175rem;
     text-transform: uppercase;
-    background-color: #0f0;
-    padding: 0.8rem;
+    padding: 0.85rem 0.75rem;
+  }
+  .payOptions h2{
+    color: #000;
+    font-family: Ubuntu;
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .pay{
+    width: 1rem;
+    height: 1rem;
   }
   .checkOut {
     display: flex;
@@ -784,6 +922,15 @@ footer {
     border: 1px solid #e0e0e0;
     margin-bottom: 2rem;
     padding: 0 3%;
+  }
+  label{
+    color: rgba(0, 0, 0, 0.75);
+    font-family: Inter;
+    font-size: 0.7rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0.75rem;
   }
 }
 @media (max-width: 871px) {
@@ -797,13 +944,9 @@ footer {
     align-items: center;
   }
   .orderSummary {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
     margin-left: 0;
     width: 100%;
+    border: 1px solid #e0e0e0;
     background: #fff;
     margin-bottom: 2rem;
   }
@@ -818,8 +961,8 @@ footer {
     font-size: 17px;
   }
   .cartHead svg {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
   }
   .cartBody {
     padding: 0.9rem 1.25rem;
@@ -854,28 +997,6 @@ footer {
     margin-left: 50px;
   }
 }
-@media (max-width: 654px) {
-    .cardOptions{
-        border-radius: 9px;
-        width: 7rem;
-        border: 1px solid #e0e0e0;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-    }
-    .cardOptions svg{
-        width: 32px;
-        height: 32px;
-        margin-bottom: 0.2rem;
-    }
-    .cardOptions p{
-        color: #000;
-        font-family: Ubuntu;
-        font-size: 0.7rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
-}
 @media (max-width: 600px) {
   .loginbox {
     width: 21rem;
@@ -908,50 +1029,6 @@ footer {
     font-weight: 500;
     text-decoration: underline;
   }
-  .uAcc{
-    flex-direction: column;
-  }
-  .left{
-    margin-left: 0;
-  }
-  .oneBtn{
-    display: none;
-  }
-  .twoBtn{
-    margin-top: 1.3rem;
-    display: block;
-  }
-  .sides{
-    width: 100%;
-  }
-  .editBody label{
-    font-size: small;
-  }
-  .editBody input{
-    width: 100%;
- }
-}
-@media (max-width: 585px) {
-    .cardOptions{
-        border-radius: 9px;
-        width: 6rem;
-        border: 1px solid #e0e0e0;
-        padding: 1rem 0;
-        margin-bottom: 1rem;
-    }
-    .cardOptions svg{
-        width: 32px;
-        height: 32px;
-        margin-bottom: 0.2rem;
-    }
-    .cardOptions p{
-        color: #000;
-        font-family: Ubuntu;
-        font-size: 0.65rem;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-    }
 }
 @media (max-width: 481px) {
   .orderHeading {
@@ -973,19 +1050,17 @@ footer {
     font-size: 0.8rem;
   }
   .checkOut button {
-    width: 7rem;
     border: transparent;
     outline: transparent;
-    color: #000;
+    color: white;
     font-family: Inter;
-    font-size: 0.6rem;
+    background-color: #000;
+    font-size: 0.45rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.175rem;
     text-transform: uppercase;
-    background-color: #0f0;
-    padding: 0.6rem;
   }
 }
 @media (min-width: 1537px) {

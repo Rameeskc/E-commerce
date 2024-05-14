@@ -13,13 +13,14 @@ module.exports={
     },
 
     addcouponPost:async(req,res)=>{
-        const{code,date,discountAmount,condition}=req.body
+        const{code,date,discountAmount,above,below}=req.body
         try{
             await couponSchema.create({
                 couponText:code,
                 date:date,
                 discount:discountAmount,
-                condition:condition
+                above:above,
+                below:below
             })
             res.redirect('/adminCoupon')
         }catch(err){
@@ -49,7 +50,8 @@ module.exports={
                     couponText:code,
                     date:date,
                     discount:discountAmount,
-                    condition:condition
+                    above:above,
+                    below:below
                 },
                 {new:true}
             )

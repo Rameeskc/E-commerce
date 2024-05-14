@@ -25,7 +25,7 @@ module.exports = {
                 } else {
 
                     if (!cart.products.some(product => product.productId.equals(productobjId))) {
-                        console.log('hello');
+                        
 
                         // If the product doesn't exist, update the cart schema
                         await cartSchema.updateOne(
@@ -33,12 +33,8 @@ module.exports = {
                             { $push: { products: { productId: productobjId, quantity: 1 } } }
                         );
                     }
-                    // else {
-                    //     await cartSchema.updateOne(
-                    //         { userId: userobjId },
-                    //         { $pull: { productId: productobjId } }
-                    //     );
-                    // }
+                   ;
+                    
                 }
 
             } catch (error) {
@@ -74,8 +70,19 @@ module.exports = {
                         return acc+=data.productId.productDiscounted * data.quantity
                     },0)
                     
-                    console.log(subtotal,totalAmount);
+                
                     const discountAmount = subtotal-totalAmount
+                    
+
+                    const cart = await cartSchema.updateOne(
+                        {userId:userobjId},
+                        {
+                            productDiscounted:totalAmount,
+                            productPrice:subtotal,
+                            productDiscountedAmount:discountAmount
+                        },
+                        
+                    )
 
                     res.render('user/cart', { cartData , totalAmount, discountAmount,subtotal });
                 }
@@ -98,7 +105,7 @@ module.exports = {
                 const userObjId = user._id;
                 const quantity = req.body.quantity; // Corrected variable name
 
-                console.log(quantity);
+                
                 const cartData = await cartSchema.updateOne(
                     { userId: userObjId, 'products.productId': productId },
                     { $set: { 'products.$.quantity': quantity } } // Corrected field name
@@ -113,6 +120,7 @@ module.exports = {
                         return acc+=data.productId.productPrice * data.quantity
                     },0)
 
+
                     // const discount = cartdetail.products.reduce((acc,data)=>{
                     //     return acc+=data.productId.productDiscountedAmount * data.quantity
                     // },0)
@@ -122,11 +130,15 @@ module.exports = {
                     },0)
                     
                     const discount = subtotal-totalAmount
-                    
+                    console.log(subtotal,discount);
 
                     const cart = await cartSchema.updateOne(
                         {userId:userObjId},
-                        {total:totalAmount}
+                        {
+                            productDiscounted:totalAmount,
+                            productPrice:subtotal,
+                            productDiscountedAmount:discount
+                        },
                     )
                     return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });
                     
@@ -176,7 +188,11 @@ module.exports = {
 
                     const cart = await cartSchema.updateOne(
                         {userId:userObjId},
-                        {total:totalAmount}
+                        {
+                            productDiscounted:totalAmount,
+                            productPrice:subtotal,
+                            productDiscountedAmount:discount
+                        },
                     )
                     return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });   
                     

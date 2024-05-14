@@ -21,8 +21,7 @@ router.get('/',userAuth.userhomeGet)
       .get('/addProfile',profile.addprofileGet)
       .post('/addProfile',profile.addprofilePost)
       .get('/userProfile',profile.userprofileGet)
-      .get('/editProfile/:id',profile.editprofileGet)
-      .post('/editProfile/:id',profile.editprofilePost)
+      
       .get('/deleteProfile/:id',profile.deleteProfileGet)
 
       
@@ -41,7 +40,8 @@ router.get('/',userAuth.userhomeGet)
       .get('/removeWishlist/:id',wishList.removewishlistGet)
 
       .get('/cartToCheckout',checkOut.cartToCheckoutGet)
-      .get('/buyToCheckout',checkOut.buyToCheckoutGet)
+      .post('/applyCoupon', checkOut.applyCoupon)
+      .post('/addressChange/:id',checkOut.addressChange)
 
         
 

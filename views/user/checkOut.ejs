@@ -25,6 +25,7 @@
     <!-- main -->
     <main>
       <!-- Modal -->
+      
       <div
         class="modal fade"
         id="changeAddressModal"
@@ -35,12 +36,7 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content bg-white eachAdd border-0">
             <div class="modal-header">
-              <h5
-                class="modal-title"
-                id="exampleModalLabel"
-              >
-                Address
-              </h5>
+              <h5 class="modal-title" id="exampleModalLabel">Address</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -48,47 +44,45 @@
                 aria-label="Close"
               ></button>
             </div>
+
             <div class="modal-body">
-              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
-                <p class="name">John D</p>
-                <p>Abc house, abc street,PIN: 673478</p>
-                <p class="phone">Phone: 98675555568</p>
-                <input name="adId" class="position-absolute radio" type="radio" value="proId1">
+              <% profileData.forEach((data)=> { %>
+              <div
+                class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative"
+              >
+                <p class="name"><%= data.Name%></p>
+                <p><%= data.Locality%>, <%= data.District%>,PIN: <%= data.pinCode%></p>
+                <p class="phone">Phone: <%= data.Phone%></p>
+                <input 
+                  onclick="changeAddress(event,'<%=data._id%>')"
+                  name="adId"
+                  class="position-absolute radio"
+                  type="radio"
+                  value="<%=data.Name%>,<%=data.Locality%>,<%=data.District%>,<%=data.pinCode%>,<%=data.Phone%>"
+                  data-address="<%= JSON.stringify(data)%>"
+                />
               </div>
-              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
-                <p class="name">John D</p>
-                <p>Abc house, abc street,PIN: 673478</p>
-                <p class="phone">Phone: 98675555568</p>
-                <input name="adId" class="position-absolute radio" type="radio" value="proId2">
-              </div>
-              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
-                <p class="name">John D</p>
-                <p>Abc house, abc street,PIN: 673478</p>
-                <p class="phone">Phone: 98675555568</p>
-                <input name="adId" class="position-absolute radio" type="radio" value="proId3">
-              </div>
-              <div class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative">
-                <p class="name">John D</p>
-                <p>Abc house, abc street,PIN: 673478</p>
-                <p class="phone">Phone: 98675555568</p>
-                <input name="adId" class="position-absolute radio" type="radio" value="proId4">
-              </div>
-              
-              <p class="m-0"><a href="/" class="button">Add Address</a></p>
+              <%})%>
+
+              <p class="m-0"><a href="/addProfile" class="button">Add Address</a></p>
             </div>
+
             <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary bg-danger text-white"
                 data-bs-dismiss="modal"
               >
-                Close
+                submit
               </button>
               <!-- Add additional buttons or actions as needed -->
             </div>
           </div>
         </div>
       </div>
+
+      
+
       <!-- end of Modal -->
       <div class="container-fluid main">
         <div class="row mainContainer">
@@ -141,17 +135,31 @@
                       <h2 class="m-0">Cash On Delivery (COD)</h2>
                     </div>
                   </div>
-
+                  <% if (coupons && coupons.length > 0) { %>
+                    <form id="couponForm">
+                        <select id="couponSelect" name="coupon">
+                            <option value="" selected>Coupon</option>
+                            <% coupons.forEach(appliedCoupon => { %>
+                                <option value="<%= appliedCoupon._id %>" class="coupon"><%= appliedCoupon.couponText %></option>
+                            <% }); %>
+                            <option value="">no Coupon</option>
+                        </select>
+                        <button type="submit" class="coupon-button">Apply Coupon</button>
+                    </form>
+                <% } %>
+                
+                
                   <div class="orderSummary m-0 w-100">
                     <div class="orderHeading">
                       <h2>Delivery Address</h2>
                     </div>
                     <div class="deleviryContent">
                       <div class="chooseAdd position-relative">
+                    
                         <div class="existingAddress">
-                          <p class="name">John D</p>
-                          <p>Abc house, abc street,PIN: 673478</p>
-                          <p class="phone">Phone: 98675555568</p>
+                          <p class="name">name</p>
+                          <p>address</p>
+                          <p class="phone">phone</p>
                         </div>
                         <a
                           href="/userChangeAddress"
@@ -163,10 +171,12 @@
                           </button>
                         </a>
                       </div>
+                      
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="col-6 oneSection">
                 <div class="orderSummary">
                   <div class="orderHeading">
@@ -177,7 +187,9 @@
                       class="sTotal d-flex justify-content-between align-items-center"
                     >
                       <p class="commonText m-0 p-0">Subtotal</p>
-                      <p class="commonSub m-0 p-0" id="sTotal">₹27,598</p>
+                      <p class="commonSub m-0 p-0" id="sTotal">
+                        <%=cartData.productPrice%>
+                      </p>
                     </div>
 
                     <div
@@ -191,21 +203,27 @@
                       class="ship d-flex justify-content-between align-items-center"
                     >
                       <p class="commonText m-0 p-0">Discount</p>
-                      <p class="commonSub m-0 p-0" id="dPrice">-19,600</p>
+                      <p class="commonSub m-0 p-0" id="dPrice">
+                        -<%=cartData.productDiscountedAmount%>
+                      </p>
                     </div>
 
                     <div
                       class="ship d-flex justify-content-between align-items-center"
                     >
                       <p class="commonText m-0 p-0">Coupon Discount</p>
-                      <p class="commonSub m-0 p-0" id="cDPrice">0</p>
+                      <p class="commonSub m-0 p-0" id="cDPrice">
+                      
+                      </p>
                     </div>
                   </div>
                   <div
                     class="commonText tPrice d-flex justify-content-between align-items-center"
                   >
                     <p class="m-0 p-0">Total</p>
-                    <p class="m-0 p-0" id="tPrice">₹7,998</p>
+                    <p class="m-0 p-0" id="tPrice">
+                      ₹<%=cartData.productDiscounted%>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -728,7 +746,12 @@
     </footer>
     <!-- end of footer -->
 
+    <script src="/js/checkOut.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- custom js -->
+
+    
     <script src="./js/userPayment.js"></script>
     <!-- end of custom js -->
     <!-- fontawesome -->

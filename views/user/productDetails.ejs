@@ -165,9 +165,9 @@
               </div>
               <p class="stock text-success">In Stock</p>
               <div class="btnBuy">
-                <a href="/buyToCheckout">
-                  <button class="buyBtn" onclick="addToCheckout(event,'<%=productData._id%>')">Buy Now</button>
-                </a>
+                <!-- <a href="/buyToCheckout/<%=productData._id%>">
+                  <button  class="buyBtn" >Buy Now</button>
+                </a> -->
                 
                 <button onclick="addToCart(event, '<%=productData._id %>')" class="cartBtn">add to cart</button>
 
@@ -805,4 +805,5 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/js/wishlist.js"></script>
 <script src ="/js/cart.js"></script>
+<!-- <script src ="/js/checkOut.js"></script> -->
 </html>

@@ -11,8 +11,11 @@ const couponSchema = new mongoose.Schema({
     discount:{
         type:Number
     },
-    condition:{
-        type:String
+    above:{
+        type:Number
+    },
+    below:{
+        type:Number
     }
 })
 

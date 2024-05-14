@@ -382,9 +382,10 @@ a {
   font-size: 0.75rem;
   font-weight: 500;
 }
-.deleteBtn {
-  top: 14px;
-  right: 14px;
+.deleteBtn{
+  position: absolute;
+  top: 4px;
+  right: 5px;
 }
 .deleteBtn svg {
   width: 13px;

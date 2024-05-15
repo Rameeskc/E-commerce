@@ -15,10 +15,10 @@ couponForm.addEventListener('submit', async (e) => {
         console.log(response.data);
 
         const couponDiscountElement = document.getElementById('cDPrice');
-        couponDiscountElement.innerHTML = response.data.discount;
+        couponDiscountElement.innerHTML = "-"+response.data.discount;
 
         const totalPrice = document.getElementById('tPrice');
-        totalPrice.innerHTML = response.data.discountedTotel
+        totalPrice.innerHTML = '₹'+response.data.discountedTotel
 
         console.log(response.data);
 
@@ -28,7 +28,7 @@ couponForm.addEventListener('submit', async (e) => {
     }
 });
 
-async function changeAddress(e,addressId) {
+async function changeAddress(e,addressId,elementId) {
     console.log(addressId);
     try{
         e.preventDefault()

@@ -22,6 +22,7 @@ module.exports = {
                         userId: userobjId,
                     });
                     await newData.save();
+                    
                 } else {
 
                     if (!cart.products.some(product => product.productId.equals(productobjId))) {

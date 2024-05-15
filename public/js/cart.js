@@ -12,6 +12,8 @@ async function addToCart(e,productId){
 }
 
 
+
+
 async function removeCart(e, productId) {
     console.log(productId);
     try {

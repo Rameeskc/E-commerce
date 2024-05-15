@@ -46,6 +46,7 @@
             </div>
 
             <div class="modal-body">
+              <% if(profileData && profileData.length > 0){%>
               <% profileData.forEach((data)=> { %>
               <div
                 class="chooseAdd existingAddress p-3 w-100 mb-3 position-relative"
@@ -63,7 +64,7 @@
                 />
               </div>
               <%})%>
-
+              <%}%>
               <p class="m-0"><a href="/addProfile" class="button">Add Address</a></p>
             </div>
 
@@ -99,7 +100,7 @@
                         type="radio"
                         id="creditCard"
                       />
-                      <h2 class="m-0">Credit Card</h2>
+                      <h2 class="m-0">Razorpay</h2>
                     </div>
                     <div class="credit">
                       <label for="cCNo" class="d-block"
@@ -156,7 +157,7 @@
                     <div class="deleviryContent">
                       <div class="chooseAdd position-relative">
                     
-                        <div class="existingAddress">
+                        <div class="existingAddress" id="existingAddress">
                           <p class="name">name</p>
                           <p>address</p>
                           <p class="phone">phone</p>

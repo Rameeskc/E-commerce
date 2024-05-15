@@ -4,7 +4,8 @@ const cartSchema = require("../model/cart");
 const coupon = require("../model/coupon");
 const couponSchema = require("../model/coupon");
 const checkOutSchema = require("../model/checkOut")
-const profileSchema = require("../model/profile")
+const profileSchema = require("../model/profile");
+const checkOut = require("../model/checkOut");
 
 
 module.exports = {
@@ -14,9 +15,23 @@ module.exports = {
       
         const email = req.session.email;
         const user = await User.findOne({ email: email });
-        const userObjId = user._id;
-        const cartData = await cartSchema.findOne({ userId: userObjId });
+        const userId = user._id;
+        const cartData = await cartSchema.findOne({ userId: userId });
+        // console.log(cartData);
+        const checkOut = await checkOutSchema.findOne({ userId: userId });
+        
         const itemPrice = cartData.productDiscounted;
+
+        if(!checkOut){
+
+          await checkOutSchema.create({
+            userId:userId,
+            total:itemPrice,
+            address:[]
+          })
+        }
+
+        
 
         let couponData = await couponSchema.find();
         let coupons = [];
@@ -26,8 +41,11 @@ module.exports = {
           }
         });
 
-        const profileData = await profileSchema.find()
+        const userprofile = await profileSchema.findOne({ userId: userId })
+        const profileData = userprofile?.address;
+        
         // console.log(profileData);
+
         
 
         res.render("user/checkOut", { cartData, coupons ,profileData});
@@ -55,11 +73,11 @@ module.exports = {
         const discountedTotel = data-discount
 
 
-        await checkOutSchema.create({
-          userId:userId,
-          total:discountedTotel,
-          address:[]
-        })
+        
+        const newCheckOut = await checkOutSchema.updateOne({
+          userId: userId,
+          total:discountedTotel, // Wrap address in an array
+      });
         
         
         res.send({ discount, discountedTotel});
@@ -75,20 +93,25 @@ module.exports = {
 
   addressChange: async (req, res) => {
     try {
-        const id = req.params.id;
+        const addressId = req.params.id;
         const email = req.session.email;
         const user = await User.findOne({ email: email });
         const userId = user._id;
-        const address = await profileSchema.findById(id);
+        const userProfile = await profileSchema.findOne({ userId: user._id });
+        if (!userProfile) {
+          return res.status(404).json({ message: 'Profile not found' });}
+
+        const address = userProfile.address.find(addr => addr._id.toString() === addressId);
+        if (!address) {
+          return res.status(404).json({ message: 'Address not found' });
+      }
+        console.log(address);
 
         // Create a new document using the checkOutSchema and push the address data
-        const newCheckOut = new checkOutSchema({
+        const newCheckOut = await checkOutSchema.updateOne({
             userId: userId,
             address: [address] // Wrap address in an array
         });
-
-        await newCheckOut.save();
-
         res.status(200).json({ message: 'Address saved successfully.' });
     } catch (err) {
         console.error(err);

@@ -7,7 +7,7 @@ couponForm.addEventListener('submit', async (e) => {
 
     const couponSelect = document.getElementById('couponSelect');
     const selectedCouponId = couponSelect.value;
-    console.log(selectedCouponId)
+    // console.log(selectedCouponId)
 
     try {
         const response = await axios.post('/applyCoupon', { couponId: selectedCouponId });
@@ -28,25 +28,32 @@ couponForm.addEventListener('submit', async (e) => {
     }
 });
 
-async function changeAddress(e,addressId,elementId) {
-    console.log(addressId);
-    try{
-        e.preventDefault()
-        const response = await axios.post(`/addressChange/${addressId}`)
-    }catch(err){
-        console.log(err);
-    }
-}
+// async function changeAddress(e,addressId,elementId) {
+//     console.log(addressId);
+//     try{
+//         e.preventDefault()
+//         const response = await axios.post(`/addressChange/${addressId}`)
+
+//         console.log(response)
+//         const name = document.querySelector('.name')
+//         const address = document.querySelector('.address')
+//         const phone = document.querySelector('.phone')
 
 
-// const radio = document.querySelectorAll('.radio');
+//     }catch(err){
+//         console.log(err);
+//     }
+// }
 
-// radio.forEach((element) => {
-//   element.addEventListener('change', () => {
-//     const data = element.value;
-//     console.log('helllo');
-//   })
-// }); 
+
+const radio = document.querySelectorAll('.radio');
+const selectedaddress =document.querySelector('.selectedaddress')
+radio.forEach((element) => {
+  element.addEventListener('change', () => {
+    const data = element.value;
+    selectedaddress.innerHTML=data;
+  })
+}); 
 
 
 

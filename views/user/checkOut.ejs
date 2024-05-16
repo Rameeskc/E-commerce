@@ -158,9 +158,21 @@
                       <div class="chooseAdd position-relative">
                     
                         <div class="existingAddress" id="existingAddress">
-                          <p class="name">name</p>
-                          <p>address</p>
-                          <p class="phone">phone</p>
+                          <% if(profileData && profileData.length > 0){%>
+                          <p class="selectedaddress">
+                            <%=profileData[0].Name%>,
+                            <%=profileData[0].Locality%>,
+                            <%=profileData[0].District%>,
+                            <%=profileData[0].pinCode%>,
+                            <%=profileData[0].Phone%>
+                          
+                          
+                          
+                          
+                          </p>
+                           
+                          <%}%>
+              
                         </div>
                         <a
                           href="/userChangeAddress"
@@ -753,7 +765,7 @@
     <!-- custom js -->
 
     
-    <script src="./js/userPayment.js"></script>
+    <!-- <script src="./js/userPayment.js"></script> -->
     <!-- end of custom js -->
     <!-- fontawesome -->
     <script

@@ -17,8 +17,8 @@ module.exports = {
         const user = await User.findOne({ email: email });
         const userId = user._id;
         const cartData = await cartSchema.findOne({ userId: userId });
-        // console.log(cartData);
         const checkOut = await checkOutSchema.findOne({ userId: userId });
+        
         
         const itemPrice = cartData.productDiscounted;
 
@@ -105,14 +105,17 @@ module.exports = {
         if (!address) {
           return res.status(404).json({ message: 'Address not found' });
       }
-        console.log(address);
+      
 
         // Create a new document using the checkOutSchema and push the address data
         const newCheckOut = await checkOutSchema.updateOne({
             userId: userId,
             address: [address] // Wrap address in an array
         });
-        res.status(200).json({ message: 'Address saved successfully.' });
+
+        const data =newCheckOut?.address
+        console.log(data,'==========');
+        res.status(200).json({ message: 'Address saved successfully.', newCheckOut});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal server error.' });

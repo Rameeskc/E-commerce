@@ -40,8 +40,12 @@ router.get('/',userAuth.userhomeGet)
       .get('/removeWishlist/:id',wishList.removewishlistGet)
 
       .get('/cartToCheckout',checkOut.cartToCheckoutGet)
+      .post('/cartToCheckout',checkOut.cartToCheckoutPost)
       .post('/applyCoupon', checkOut.applyCoupon)
       .post('/addressChange/:id',checkOut.addressChange)
+      .post('/razorpay',checkOut.razorpayPost)
+      .get('/orderPlaced',checkOut.orderPlacedGet)
+      .get('/orderList',checkOut.orderListGet)
 
         
 

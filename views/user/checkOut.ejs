@@ -55,7 +55,7 @@
                 <p><%= data.Locality%>, <%= data.District%>,PIN: <%= data.pinCode%></p>
                 <p class="phone">Phone: <%= data.Phone%></p>
                 <input 
-                  onclick="changeAddress(event,'<%=data._id%>')"
+                  
                   name="adId"
                   class="position-absolute radio"
                   type="radio"
@@ -99,6 +99,7 @@
                         value="OP"
                         type="radio"
                         id="creditCard"
+                        onchange="paymentSelect('razorpay')"
                       />
                       <h2 class="m-0">Razorpay</h2>
                     </div>
@@ -123,6 +124,7 @@
                       <input type="number" name="nOC" />
                     </div>
                   </div>
+                
 
                   <div class="items position-relative mb-3">
                     <div class="d-flex payOptions align-items-center gap-3">
@@ -132,6 +134,7 @@
                         value="COD"
                         type="radio"
                         id="COD"
+                        onchange="paymentSelect('COD')"
                       />
                       <h2 class="m-0">Cash On Delivery (COD)</h2>
                     </div>
@@ -165,10 +168,6 @@
                             <%=profileData[0].District%>,
                             <%=profileData[0].pinCode%>,
                             <%=profileData[0].Phone%>
-                          
-                          
-                          
-                          
                           </p>
                            
                           <%}%>
@@ -250,7 +249,8 @@
           <div class="col-12">
             <div class="checkOut">
               <form action="/userCartCheckOut">
-                <button>Proceed to payment</button>
+                <p class="error" style="color: red; text-align: center;"></p>
+                <button type="button" class="proceedBtn">Proceed to payment</button>
               </form>
             </div>
           </div>
@@ -760,6 +760,7 @@
     <!-- end of footer -->
 
     <script src="/js/checkOut.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- custom js -->
@@ -782,3 +783,4 @@
     <!--end of Bootstrap script file -->
   </body>
 </html>
+payment

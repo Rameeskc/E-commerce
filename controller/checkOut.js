@@ -133,9 +133,14 @@ module.exports = {
   
         const email = req.session.email;
         const user = await User.findOne({ email: email });
+  
+        if (!user) {
+          return res.status(404).json({ success: false, message: 'User not found' });
+        }
+  
         const userId = user._id;
   
-        if (paymentMethod == "COD") {
+        if (paymentMethod === "COD") {
           const cartdetail = await cartSchema.findOne({ userId: userId }).populate("products.productId");
           const checkoutData = await checkOut.findOne({ userId: userId });
           const total = checkoutData.total;
@@ -183,14 +188,36 @@ module.exports = {
 
   
   
-  razorpayPost:async(req,res)=>{
-    console.log('hi');
-    const email = req.session.email;
-    const user = await User.findOne({ email: email });
-    const userId = user._id;
-    const newAddress = req.session.paymentAddress
-    
-
+  razorpayPost:async (req, res) => {
+    try {
+      const email = req.session.email;
+      const user = await User.findOne({ email: email });
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      const userId = user._id;
+      const newAddress = req.session.paymentAddress;
+      const paymentMethod = req.session.paymentMethod;
+      const cartdetail = await cartSchema.findOne({ userId: userId }).populate("products.productId");
+      const checkoutData = await checkOut.findOne({ userId: userId });
+      const total = checkoutData.total;
+  
+      const newData = new orderSchema({
+        userId: userId,
+        products: cartdetail.products,
+        totalPrice: total,
+        address: newAddress,
+        paymentMethod: paymentMethod,
+      });
+  
+      await newData.save();
+      res.status(200).json({ success: true, message: "Order successfully placed!" });
+    } catch (error) {
+      console.error("Error in razorpayPost: ", error);
+      res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
   },
 
 
@@ -210,7 +237,6 @@ module.exports = {
       const user = await User.findOne({ email: email });
       const userId = user._id;
       const orderData = await orderSchema.find({ userId: userId }).populate('products.productId');
-      console.log(orderData);
       res.render("user/orderList", { orderData });
     } else {
       res.redirect('/userLogin');
@@ -221,6 +247,5 @@ module.exports = {
 
 
 
-// checkmode
 
 

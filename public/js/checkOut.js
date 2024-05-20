@@ -87,16 +87,20 @@ proceedBtn.addEventListener('click', async (event) => {
         amount: result.razorpayOrder.amount,
         currency: result.razorpayOrder.currency,
         name: 'Your Company Name',
-        // description: 'Test Payment',
-        // order_id: result.razorpayOrder.id,
-        // handler: async function (response) {
-        //   const orderResponse = await axios.post('/razorpay', response);
-        //   const orderResult = orderResponse.data;
-        //   if (orderResult.success) {
-        //     window.location.href = '/confirmed';
-        //   }
-        // }
-      }
+        description: 'Test Payment',
+        order_id: result.razorpayOrder.id,
+        handler: async function (response) {
+          try {
+            const orderResponse = await axios.post('/razorpay', response);
+            const orderResult = orderResponse.data;
+            if (orderResult.success) {
+              window.location.href = '/orderPlaced';
+            }
+          } catch (error) {
+            console.error("Error in Razorpay handler: ", error);
+          }
+        }
+      };
 
       const rzp1 = new Razorpay(options);
       rzp1.open();

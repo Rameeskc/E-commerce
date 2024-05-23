@@ -32,14 +32,22 @@ module.exports = {
         const cartData = await cartSchema.findOne({ userId: userId });
         const checkOut = await checkOutSchema.findOne({ userId: userId });
 
-        const itemPrice = cartData.productDiscounted;
+        let itemPrice = cartData.productDiscounted;
+        // console.log(cartData);
+        // console.log(itemPrice);
 
         if (!checkOut) {
           await checkOutSchema.create({
             userId: userId,
             total: itemPrice,
-            address: [],
           });
+        }else{
+          await checkOutSchema.updateOne(
+            {userId: userId,},
+            {
+              total: itemPrice,
+            }
+          );
         }
 
         let couponData = await couponSchema.find();
@@ -93,38 +101,39 @@ module.exports = {
     }
   },
 
-  addressChange: async (req, res) => {
-    try {
-      const addressId = req.params.id;
-      const email = req.session.email;
-      const user = await User.findOne({ email: email });
-      const userId = user._id;
-      const userProfile = await profileSchema.findOne({ userId: user._id });
-      if (!userProfile) {
-        return res.status(404).json({ message: "Profile not found" });
-      }
+  // addressChange: async (req, res) => {
+  //   try {
+  //     const addressId = req.params.id;
+  //     const email = req.session.email;
+  //     const user = await User.findOne({ email: email });
+  //     const userId = user._id;
+  //     const userProfile = await profileSchema.findOne({ userId: user._id });
+  //     if (!userProfile) {
+  //       return res.status(404).json({ message: "Profile not found" });
+  //     }
 
-      const address = userProfile.address.find(
-        (addr) => addr._id.toString() === addressId
-      );
-      if (!address) {
-        return res.status(404).json({ message: "Address not found" });
-      }
+  //     const address = userProfile.address.find(
+  //       (addr) => addr._id.toString() === addressId
+  //     );
+  //     if (!address) {
+  //       return res.status(404).json({ message: "Address not found" });
+  //     }
 
-      // Create a new document using the checkOutSchema and push the address data
-      const newCheckOut = await checkOutSchema.updateOne({
-        userId: userId,
-        address: [address], // Wrap address in an array
-      });
+  //     // Create a new document using the checkOutSchema and push the address data
+  //     const newCheckOut = await checkOutSchema.updateOne({
+  //       userId: userId,
+  //       address: [address], // Wrap address in an array
+  //     });
 
-      res.status(200).json({ message: "Address saved successfully." });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Internal server error." });
-    }
-  },
+  //     res.status(200).json({ message: "Address saved successfully." });
+  //   } catch (err) {
+  //     console.error(err);
+  //     res.status(500).json({ message: "Internal server error." });
+  //   }
+  // },
   cartToCheckoutPost : async (req, res) => {
     try {
+      // console.log('hi');
       if (req.session.email) {
         const { paymentAddress, paymentMethod } = req.body;
         const newAddress = paymentAddress.trim();
@@ -143,7 +152,12 @@ module.exports = {
         if (paymentMethod === "COD") {
           const cartdetail = await cartSchema.findOne({ userId: userId }).populate("products.productId");
           const checkoutData = await checkOut.findOne({ userId: userId });
+          // console.log('data',checkoutData);
           const total = checkoutData.total;
+          // console.log(total);
+
+
+          // console.log(cartdetail);
   
           const newData = new orderSchema({
             userId: userId,
@@ -152,8 +166,12 @@ module.exports = {
             address: newAddress,
             paymentMethod: paymentMethod,
           });
+          // console.log(newData);
   
           await newData.save();
+
+          await cartSchema.findOneAndDelete({ userId });
+
   
           return res.status(200).json({ success: true, COD: true });
         } else if (paymentMethod === 'razorpay') {
@@ -213,6 +231,9 @@ module.exports = {
       });
   
       await newData.save();
+
+      await cartSchema.findOneAndDelete({ userId });
+
       res.status(200).json({ success: true, message: "Order successfully placed!" });
     } catch (error) {
       console.error("Error in razorpayPost: ", error);
@@ -237,6 +258,7 @@ module.exports = {
       const user = await User.findOne({ email: email });
       const userId = user._id;
       const orderData = await orderSchema.find({ userId: userId }).populate('products.productId');
+      // console.log('orderData:',orderData);
       res.render("user/orderList", { orderData });
     } else {
       res.redirect('/userLogin');

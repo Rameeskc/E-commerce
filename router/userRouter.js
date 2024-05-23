@@ -27,6 +27,9 @@ router.get('/',userAuth.userhomeGet)
       
       
       .get('/userProduct',userAuth.allproductsGet)
+      .get('/menproducts',userAuth.menProduct)
+      .get('/femaleProduct',userAuth.femaleProduct)
+      .get('/kidsProduct',userAuth.kidsProduct)
       
       .post('/addToCart/:id',cart.addToCart)
       .get('/cart',cart.cartGet)
@@ -42,7 +45,7 @@ router.get('/',userAuth.userhomeGet)
       .get('/cartToCheckout',checkOut.cartToCheckoutGet)
       .post('/cartToCheckout',checkOut.cartToCheckoutPost)
       .post('/applyCoupon', checkOut.applyCoupon)
-      .post('/addressChange/:id',checkOut.addressChange)
+      // .post('/addressChange/:id',checkOut.addressChange)
       .post('/razorpay',checkOut.razorpayPost)
       .get('/orderPlaced',checkOut.orderPlacedGet)
       .get('/orderList',checkOut.orderListGet)

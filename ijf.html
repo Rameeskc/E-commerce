@@ -15,3 +15,13 @@
       </select>
 </body>
 </html>
+
+const radio = document.querySelectorAll('.radio');
+const selectedaddress=document.querySelector('.selectedaddress')
+radio.forEach((element) => {
+  element.addEventListener('change', () => {
+    const data = element.value;
+    selectedaddress.innerHTML=data
+  
+  })
+});

@@ -53,7 +53,8 @@
               <div class="col-6 oneSection">
                 <div class="cartItems">
                   <%cartData?.products?.forEach((product)=>{ %>
-                    <div class="items position-relative<%=product.productId._id%>" style="position: relative;">
+                    <% if (product.productId) { %> 
+                    <div class="items position-relative cartproduct<%=product.productId%>"  style="position: relative;">
                            
                     <div class="contentDiv d-flex gap-4">
                       <div class="itemImg">
@@ -96,7 +97,7 @@
                     </div>
                   
                 </div>
-
+                <% } %>
                   <%})%>
                   
                 </div>

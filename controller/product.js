@@ -13,12 +13,10 @@ addproductGet:(req,res)=>{
 
 addproductPost:async(req,res)=>{
 const productImage = req.files.map((img) => img.filename);
-// console.log(productImage)
 const {productPrice,productDiscount} = req.body
 const discounted =productPrice*productDiscount/100;
 const discountedValue=productPrice-discounted
 const roundedValue = Math.round(discountedValue)  
-console.log(discountedValue,roundedValue);
 
 try {
   await productSchema.create({ ...req.body, productImage: productImage, productDiscounted:roundedValue ,productDiscountedAmount:discounted});

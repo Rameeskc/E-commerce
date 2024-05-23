@@ -1,5 +1,3 @@
-
-
 async function addToCart(e,productId){
     e.preventDefault()
 

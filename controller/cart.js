@@ -54,40 +54,40 @@ module.exports = {
                 const user = await User.findOne({ email: email });
                 const userobjId = user._id;
                 const cartData = await cartSchema.findOne({ userId: userobjId }).populate('products.productId');
-
-                
+    
                 if (cartData && cartData.products) {
                     cartCount = cartData.products.length;
-                    
-                    const subtotal = cartData.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productPrice * data.quantity
-                    },0)
-
-                    // const discountAmount = cartData.products.reduce((acc,data)=>{
-                    //     return acc+=data.productId.productDiscountedAmount * data.quantity
-                    // },0)
-                    
-                    const totalAmount=cartData.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productDiscounted * data.quantity
-                    },0)
-                    
-                
-                    const discountAmount = subtotal-totalAmount
-                    
-
+    
+                    const subtotal = cartData.products.reduce((acc, data) => {
+                        if (data.productId) {
+                            return acc + (data.productId.productPrice * data.quantity);
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const totalAmount = cartData.products.reduce((acc, data) => {
+                        if (data.productId) {
+                            return acc + (data.productId.productDiscounted * data.quantity);
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const discountAmount = subtotal - totalAmount;
+    
                     const cart = await cartSchema.updateOne(
-                        {userId:userobjId},
+                        { userId: userobjId },
                         {
-                            productDiscounted:totalAmount,
-                            productPrice:subtotal,
-                            productDiscountedAmount:discountAmount
-                        },
-                        
-                    )
-
-                    res.render('user/cart', { cartData , totalAmount, discountAmount,subtotal });
+                            productDiscounted: totalAmount,
+                            productPrice: subtotal,
+                            productDiscountedAmount: discountAmount
+                        }
+                    );
+    
+                    res.render('user/cart', { cartData, totalAmount, discountAmount, subtotal });
+                } else {
+                    res.render('user/cart', { cartData: [], totalAmount: 0, discountAmount: 0, subtotal: 0 });
                 }
-            } else {    
+            } else {
                 res.redirect('/userLogin');
             }
         } catch (error) {
@@ -96,112 +96,105 @@ module.exports = {
         }
     },
     updateQuantity: async (req, res) => {
-       
         if (req.session.email) {
-            
             try {
                 const productId = req.query.productId;
                 const email = req.session.email;
                 const user = await User.findOne({ email: email });
                 const userObjId = user._id;
-                const quantity = req.body.quantity; // Corrected variable name
-
-                
-                const cartData = await cartSchema.updateOne(
+                const quantity = req.body.quantity;
+    
+                await cartSchema.updateOne(
                     { userId: userObjId, 'products.productId': productId },
-                    { $set: { 'products.$.quantity': quantity } } // Corrected field name
+                    { $set: { 'products.$.quantity': quantity } }
                 );
-
-                const cartdetail =  await cartSchema.findOne({ userId: userObjId }).populate('products.productId');
-
+    
+                const cartdetail = await cartSchema.findOne({ userId: userObjId }).populate('products.productId');
+    
                 if (cartdetail && cartdetail.products) {
                     cartCount = cartdetail.products.length;
-                    
-                    const subtotal = cartdetail.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productPrice * data.quantity
-                    },0)
-
-
-                    // const discount = cartdetail.products.reduce((acc,data)=>{
-                    //     return acc+=data.productId.productDiscountedAmount * data.quantity
-                    // },0)
-                    
-                    const totalAmount=cartdetail.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productDiscounted * data.quantity
-                    },0)
-                    
-                    const discount = subtotal-totalAmount
-                    console.log(subtotal,discount);
-
-                    const cart = await cartSchema.updateOne(
-                        {userId:userObjId},
+    
+                    const subtotal = cartdetail.products.reduce((acc, data) => {
+                        if (data.productId) {
+                            return acc += data.productId.productPrice * data.quantity;
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const totalAmount = cartdetail.products.reduce((acc, data) => {
+                        if (data.productId) {
+                            return acc += data.productId.productDiscounted * data.quantity;
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const discount = subtotal - totalAmount;
+                    console.log(subtotal, discount);
+    
+                    await cartSchema.updateOne(
+                        { userId: userObjId },
                         {
-                            productDiscounted:totalAmount,
-                            productPrice:subtotal,
-                            productDiscountedAmount:discount
+                            productDiscounted: totalAmount,
+                            productPrice: subtotal,
+                            productDiscountedAmount: discount
                         },
-                    )
+                    );
+    
                     return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });
-                    
-                } else {    
+                } else {
                     return res.status(404).json({ success: false, message: 'Cart not found' });
-                
                 }
-
             } catch (error) {
                 console.error('Error updating cart quantity:', error);
                 return res.status(500).json({ success: false, message: 'Internal server error' });
             }
         }
     },
-    removeCart: async (req, res) => {
+    removeCart:async (req, res) => {
         if (req.session.email) {
             try {
                 const productId = req.params.id;
                 const user = await User.findOne({ email: req.session.email });
                 const userObjId = user._id;
-                console.log(userObjId)
-
     
-                await cartSchema.updateOne({ userId: user._id }, {
-                    $pull: { products: { productId: productId } } 
-                });
+                await cartSchema.updateOne(
+                    { userId: user._id },
+                    { $pull: { products: { productId: productId } } }
+                );
     
-                const cartdetail =  await cartSchema.findOne({ userId: userObjId }).populate('products.productId');
-
+                const cartdetail = await cartSchema.findOne({ userId: userObjId }).populate('products.productId');
+    
                 if (cartdetail && cartdetail.products) {
                     cartCount = cartdetail.products.length;
-                    
-                    const subtotal = cartdetail.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productPrice * data.quantity
-                    },0)
-
-                    // const discount = cartdetail.products.reduce((acc,data)=>{
-                    //     return acc+=data.productId.productDiscountedAmount * data.quantity
-                    // },0)
-                    
-                    const totalAmount=cartdetail.products.reduce((acc,data)=>{
-                        return acc+=data.productId.productDiscounted * data.quantity
-                    },0)
-
-                    const discount = subtotal-totalAmount
-                    
-
-                    const cart = await cartSchema.updateOne(
-                        {userId:userObjId},
+    
+                    const subtotal = cartdetail.products.reduce((acc, data) => {
+                        if (data.productId) { // Check if productId is not null
+                            return acc += data.productId.productPrice * data.quantity;
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const totalAmount = cartdetail.products.reduce((acc, data) => {
+                        if (data.productId) { // Check if productId is not null
+                            return acc += data.productId.productDiscounted * data.quantity;
+                        }
+                        return acc;
+                    }, 0);
+    
+                    const discount = subtotal - totalAmount;
+    
+                    await cartSchema.updateOne(
+                        { userId: userObjId },
                         {
-                            productDiscounted:totalAmount,
-                            productPrice:subtotal,
-                            productDiscountedAmount:discount
-                        },
-                    )
-                    return res.status(200).json({ success: true, message: 'Quantity updated', subtotal, totalAmount, discount });   
-                    
-                // Send the 'ok' message as the response
-                res.send({ message: 'ok' , subtotal, totalAmount, discount  });
-            } 
-            
-            }catch (err) {
+                            productDiscounted: totalAmount,
+                            productPrice: subtotal,
+                            productDiscountedAmount: discount
+                        }
+                    );
+    
+                    return res.status(200).json({ success: true, message: "ok", subtotal, totalAmount, discount });
+                }
+            } catch (err) {
                 console.log(err);
                 // Send an error response if something went wrong
                 res.status(500).send({ message: 'error' });

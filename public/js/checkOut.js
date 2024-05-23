@@ -1,31 +1,35 @@
+
+
 const couponForm = document.getElementById("couponForm");
+if(couponForm != null){
 
-couponForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const couponSelect = document.getElementById("couponSelect");
-  const selectedCouponId = couponSelect.value;
-  // console.log(selectedCouponId)
-
-  try {
-    const response = await axios.post("/applyCoupon", {
-      couponId: selectedCouponId,
-    });
-
-    console.log(response.data);
-
+  couponForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const couponSelect = document.getElementById("couponSelect");
+    const selectedCouponId = couponSelect.value;
+    // console.log(selectedCouponId)
+    
+    try {
+      const response = await axios.post("/applyCoupon", {
+        couponId: selectedCouponId,
+      });
+      
+      console.log(response.data);
+      
     const couponDiscountElement = document.getElementById("cDPrice");
     couponDiscountElement.innerHTML = "-" + response.data.discount;
-
+    
     const totalPrice = document.getElementById("tPrice");
     totalPrice.innerHTML = "₹" + response.data.discountedTotel;
-
+    
     console.log(response.data);
   } catch (error) {
     console.error("Error:", error);
     // Handle error
   }
 });
+}
 
 // async function changeAddress(e,addressId,elementId) {
 //     console.log(addressId);
@@ -54,14 +58,17 @@ radio.forEach((element) => {
   });
 });
 
-let payment;
+var payment;
 function paymentSelect(val) {
   payment = val;
   console.log(payment);
 }
 
+
 const proceedBtn = document.querySelector('.proceedBtn');
+console.log(proceedBtn)
 proceedBtn.addEventListener('click', async (event) => {
+  
   event.preventDefault();
   if (!payment) {
     document.querySelector('.error').innerHTML = 'Please select a payment method';

@@ -3,6 +3,44 @@ const { User } = require("../model/signup");
 const profileSchema = require("../model/profile");
 
 module.exports = {
+
+   userprofileGet : async (req, res) => {
+    if (req.session.email) {
+      try {
+        const email = req.session.email;
+        const user = await User.findOne({ email: email });
+  
+        if (user) {
+          const userId = user._id;
+          const profileData = await profileSchema.findOne({ userId: userId });
+  
+          if (profileData && profileData.address.length > 0) {
+            const firstAddress = profileData.address[0];
+            console.log(firstAddress);
+  
+            // Assuming you want to pass the first address to the view
+            res.render("user/userProfile", { firstAddress });
+          } else {
+            console.log('No address found for the user.');
+            res.render("user/userProfile", { address: null });
+          }
+        } else {
+          console.log('User not found.');
+          res.redirect('/userLogin');
+        }
+      } catch (err) {
+        console.error('Error fetching user profile:', err);
+        res.redirect('/userLogin');
+      }
+    } else {
+      res.redirect('/userLogin');
+    }
+  },
+  
+  // Call the function with the user ID for testing
+  // userprofileGet({ session: { email: 'test@example.com' } }, res);
+  
+
   userprofilelistGet: async (req, res) => {
     if (req.session.email) {
       try {
@@ -107,7 +145,5 @@ module.exports = {
     }
   },
 
-  userprofileGet: (req, res) => {
-    res.render("user/userProfile");
-  },
+  
 };
